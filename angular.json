@@ -1,7 +1,8 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "5013859c-2e21-49e5-aa62-6e837882e56c"
   },
   "schematics": {
     "@nrwl/angular": {
@@ -47,8 +48,14 @@
             "polyfills": "apps/todo/src/polyfills.ts",
             "tsConfig": "apps/todo/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/todo/src/favicon.ico", "apps/todo/src/assets"],
-            "styles": ["apps/todo/src/styles.less"],
+            "assets": [
+              "apps/todo/src/favicon.ico",
+              "apps/todo/src/assets"
+            ],
+            "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "apps/todo/src/styles.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -110,7 +117,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/todo"],
+          "outputs": [
+            "coverage/apps/todo"
+          ],
           "options": {
             "jestConfig": "apps/todo/jest.config.js",
             "passWithNoTests": true
@@ -139,7 +148,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/todo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/todo-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -152,12 +163,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -182,12 +197,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "coverage/apps/api"
+          ],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
