@@ -37,6 +37,6 @@ export class AppService {
   }
 
   deleteOne(id: number) {
-    return this.db.get('todos').remove({ id }).write();
+    return this.db.get('todos').remove({ id }).write()[0];
   }
 }

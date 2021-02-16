@@ -36,7 +36,8 @@ export class AppController {
     console.log(
       `createTodo invoked with params: ${JSON.stringify(createParams)}`
     );
-    return this.appService.createOne(createParams);
+    const data = this.appService.createOne(createParams);
+    return { success: true, data: data };
   }
 
   @Post('/update')
@@ -44,12 +45,14 @@ export class AppController {
     console.log(
       `updateTodo invoked with params: ${JSON.stringify(updateParams)}`
     );
-    return this.appService.updateOne(updateParams);
+    const data = this.appService.updateOne(updateParams);
+    return { success: true, data };
   }
 
   @Post('/delete')
   deleteTodo(@Body() deleteParams: DeleteTodoDTO) {
     console.log(`deleteTodo invoked with params: ${deleteParams.id}`);
-    return this.appService.deleteOne(deleteParams.id);
+    const data = this.appService.deleteOne(deleteParams.id);
+    return { success: true, data };
   }
 }

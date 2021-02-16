@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@todoapp/dto": ["libs/dto/src/index.ts"],
-      "@todoapp/validation": ["libs/validation/src/index.ts"]
+      "@todoapp/validation": ["libs/validation/src/index.ts"],
+      "@todoapp/ui-components": ["libs/ui-components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

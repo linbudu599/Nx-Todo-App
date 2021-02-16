@@ -20,6 +20,7 @@
     "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] },
     "api": { "tags": [] },
     "dto": { "tags": [] },
-    "validation": { "tags": [] }
+    "validation": { "tags": [] },
+    "ui-components": { "tags": [] }
   }
 }
