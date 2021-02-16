@@ -18,6 +18,8 @@
   "projects": {
     "todo": { "tags": [] },
     "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] },
-    "api": { "tags": [] }
+    "api": { "tags": [] },
+    "dto": { "tags": [] },
+    "validation": { "tags": [] }
   }
 }

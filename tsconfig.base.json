@@ -16,7 +16,10 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@todoapp/dto": ["libs/dto/src/index.ts"],
+      "@todoapp/validation": ["libs/validation/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

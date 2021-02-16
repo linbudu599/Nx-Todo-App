@@ -48,10 +48,7 @@
             "polyfills": "apps/todo/src/polyfills.ts",
             "tsConfig": "apps/todo/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/todo/src/favicon.ico",
-              "apps/todo/src/assets"
-            ],
+            "assets": ["apps/todo/src/favicon.ico", "apps/todo/src/assets"],
             "styles": [
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "apps/todo/src/styles.less"
@@ -117,9 +114,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/todo"
-          ],
+          "outputs": ["coverage/apps/todo"],
           "options": {
             "jestConfig": "apps/todo/jest.config.js",
             "passWithNoTests": true
@@ -148,9 +143,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/todo-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/todo-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -163,16 +156,12 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -197,18 +186,56 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/api"
-          ],
+          "outputs": ["coverage/apps/api"],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dto": {
+      "root": "libs/dto",
+      "sourceRoot": "libs/dto/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dto/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dto"],
+          "options": {
+            "jestConfig": "libs/dto/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "validation": {
+      "root": "libs/validation",
+      "sourceRoot": "libs/validation/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/validation/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/validation"],
+          "options": {
+            "jestConfig": "libs/validation/jest.config.js",
             "passWithNoTests": true
           }
         }
