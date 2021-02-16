@@ -25,12 +25,12 @@ export type DeleteTodoItemPayload = Pick<TodoItemBase, 'id'>;
 
 export class CreateTodoDTO implements CreateTodoItemPayload {
   @IsString()
-  @Length(2, 10)
+  @Length(2, 20)
   title: string;
 
   @IsString()
   @IsOptional()
-  @Length(2, 20)
+  @Length(2, 30)
   description?: string;
 }
 
@@ -41,12 +41,12 @@ export class UpdateTodoDTO implements UpdateTodoItemPayload {
 
   @IsString()
   @IsOptional()
-  @Length(2, 10)
+  @Length(2, 20)
   title?: string;
 
   @IsString()
   @IsOptional()
-  @Length(2, 20)
+  @Length(2, 30)
   description?: string;
 }
 

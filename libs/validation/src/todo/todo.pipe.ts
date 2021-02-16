@@ -24,6 +24,7 @@ export class TodoValidationPipe implements PipeTransform {
     const object = plainToClass(metatype, value);
     const errors = await validate(object);
     if (errors.length > 0) {
+      console.log(errors);
       throw new BadRequestException('Validation failed');
     }
     return value;

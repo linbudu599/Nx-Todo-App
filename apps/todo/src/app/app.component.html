@@ -58,11 +58,101 @@
   nzTitle="Modal Title"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
-  [nzOkLoading]="isModalOkLoading"
+  [nzFooter]="null"
 >
   <div *nzModalContent>
     <p>selected todo id {{ selectedTodo.id }}</p>
     <p>selected todo title {{ selectedTodo.title }}</p>
     <p>selected todo description {{ selectedTodo.description }}</p>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="fakeUpdate(selectedTodo.id)"
+      style="display: block"
+    >
+      Fake Update
+    </button>
+
+    <br />
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode"
+          >title</nz-form-label
+        >
+        <nz-form-control [nzSpan]="14" nzErrorTip="Title Field Required!">
+          <nz-input-group
+            [nzSuffix]="suffixTemplateInfo"
+            [nzPrefix]="prefixTemplateUser"
+          >
+            <input
+              nz-input
+              formControlName="title"
+              name="title"
+              autocomplete="off"
+              placeholder="TODO TITLE"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <ng-template #prefixTemplateUser
+        ><i nz-icon nzType="user"></i
+      ></ng-template>
+      <ng-template #suffixTemplateInfo
+        ><i
+          nz-icon
+          nz-tooltip
+          nzTooltipTitle="Extra information"
+          nzTooltipTrigger="hover"
+          nzType="info-circle"
+        ></i
+      ></ng-template>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="description"
+          >description</nz-form-label
+        >
+        <nz-form-control [nzSpan]="14">
+          <nz-input-group
+            [nzSuffix]="suffixTemplateInfo"
+            [nzPrefix]="prefixTemplateUser"
+          >
+            <input
+              nz-input
+              formControlName="description"
+              name="description"
+              autocomplete="off"
+              placeholder="TODO DESCRIPTION"
+            />
+          </nz-input-group>
+          <ng-template #prefixTemplateUser
+            ><i nz-icon nzType="user"></i
+          ></ng-template>
+          <ng-template #suffixTemplateInfo
+            ><i
+              nz-icon
+              nz-tooltip
+              nzTooltipTitle="Extra information"
+              nzType="info-circle"
+            ></i
+          ></ng-template>
+          <br />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="!validateForm.valid"
+            style="width: 30%; margin: 0 35%"
+          >
+            Log in
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
   </div>
 </nz-modal>

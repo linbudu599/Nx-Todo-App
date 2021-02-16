@@ -1,5 +1,9 @@
 # Nx-Todo-App
 
+## Progress
+
+WIP
+
 ## Tech
 
 - Nx
