@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 registerLocaleData(zh);
 
@@ -24,6 +28,10 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     NzButtonModule,
     NzLayoutModule,
+    NzSpaceModule,
+    NzTagModule,
+    NzIconModule,
+    NzModalModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],

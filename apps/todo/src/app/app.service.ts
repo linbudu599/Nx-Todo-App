@@ -7,7 +7,7 @@ import {
   TodoItemBase,
 } from '@todoapp/dto';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap, pluck, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +18,10 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   fetchAll(): Observable<TodoItemBase[]> {
-    return this.http
-      .get<TodoItemBase[]>('/api/todos/all')
-      .pipe(
-        tap(
-          (_) => console.log(`fetchAll Data Length: ${_.length}`),
-          catchError(this.handleError<TodoItemBase[]>('fetchAll', []))
-        )
-      );
+    return this.http.get<TodoItemBase[]>('/api/todos/all').pipe(
+      tap((_) => console.log(`fetchAll Data Length: ${_.length}`)),
+      catchError(this.handleError<TodoItemBase[]>('fetchAll', []))
+    );
   }
 
   fetchById(id: number): Observable<TodoItemBase> {
@@ -37,19 +33,25 @@ export class AppService {
   createOne(createParams: CreateTodoDTO): Observable<TodoItemBase> {
     return this.http
       .post<TodoItemBase>('/api/todos/create', createParams)
-      .pipe(tap(() => console.log(`createParams: ${createParams}`)));
+      .pipe(
+        tap(() => console.log(`createParams: ${JSON.stringify(createParams)}`))
+      );
   }
 
   updateOne(updateParams: UpdateTodoDTO): Observable<TodoItemBase> {
     return this.http
       .post<TodoItemBase>('/api/todos/update', updateParams)
-      .pipe(tap(() => console.log(`updateParams: ${updateParams}`)));
+      .pipe(
+        tap(() => console.log(`updateParams: ${JSON.stringify(updateParams)}`))
+      );
   }
 
   deleteOne(deleteParams: DeleteTodoDTO): Observable<TodoItemBase> {
     return this.http
       .post<TodoItemBase>('/api/todos/delete', deleteParams)
-      .pipe(tap(() => console.log(`deleteParams: ${deleteParams}`)));
+      .pipe(
+        tap(() => console.log(`deleteParams: ${JSON.stringify(deleteParams)}`))
+      );
   }
 
   private handleError<T>(

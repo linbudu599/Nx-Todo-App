@@ -28,7 +28,7 @@ export class AppController {
   getTodosById(@Param('id') id: number) {
     console.log(`getTodosById invoked with id: ${id}`);
     const data = this.appService.getOne(id);
-    return { success: true, data: data ?? {} };
+    return data ?? {};
   }
 
   @Post('/create')
@@ -37,7 +37,7 @@ export class AppController {
       `createTodo invoked with params: ${JSON.stringify(createParams)}`
     );
     const data = this.appService.createOne(createParams);
-    return { success: true, data: data };
+    return data;
   }
 
   @Post('/update')
@@ -46,13 +46,13 @@ export class AppController {
       `updateTodo invoked with params: ${JSON.stringify(updateParams)}`
     );
     const data = this.appService.updateOne(updateParams);
-    return { success: true, data };
+    return data;
   }
 
   @Post('/delete')
   deleteTodo(@Body() deleteParams: DeleteTodoDTO) {
     console.log(`deleteTodo invoked with params: ${deleteParams.id}`);
     const data = this.appService.deleteOne(deleteParams.id);
-    return { success: true, data };
+    return data;
   }
 }

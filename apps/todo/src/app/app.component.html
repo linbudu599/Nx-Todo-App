@@ -14,3 +14,55 @@
     src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg"
   />
 </a>
+
+<nz-space style="margin-bottom: 20px">
+  <div
+    *ngFor="let todo of todos; index as i"
+    style="width: 100px; margin-right: 20px"
+  >
+    <nz-space-item>
+      <span>id: {{ todo.id }}</span>
+    </nz-space-item>
+    <nz-space-item>
+      <span>title: {{ todo.title }}</span>
+    </nz-space-item>
+    <nz-space-item>
+      <span>desc: {{ todo.description }}</span>
+    </nz-space-item>
+    <button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+      (click)="fakeCheckDetail(todo.id)"
+    >
+      <i nz-icon nzType="search"></i>
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+      (click)="fakeDelete(todo.id)"
+    >
+      <i nz-icon nzType="close"></i>
+    </button>
+    <br />
+  </div>
+</nz-space>
+
+<button nz-button nzType="primary" (click)="fakeAdd()" style="display: block">
+  Fake Add
+</button>
+
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  nzTitle="Modal Title"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="isModalOkLoading"
+>
+  <div *nzModalContent>
+    <p>selected todo id {{ selectedTodo.id }}</p>
+    <p>selected todo title {{ selectedTodo.title }}</p>
+    <p>selected todo description {{ selectedTodo.description }}</p>
+  </div>
+</nz-modal>
