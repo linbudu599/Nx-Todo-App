@@ -41,7 +41,7 @@
       nz-button
       nzType="primary"
       nzShape="circle"
-      (click)="fakeDelete(todo.id)"
+      (click)="deleteItem({ id: todo.id })"
     >
       <i nz-icon nzType="close"></i>
     </button>
@@ -53,17 +53,24 @@
   Fake Add
 </button>
 
+<button nz-button nzType="primary" (click)="realAdd()" style="display: block">
+  Real Add
+</button>
+
 <nz-modal
   [(nzVisible)]="isModalVisible"
-  nzTitle="Modal Title"
+  [nzTitle]="modalTitle"
   (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
   [nzFooter]="null"
 >
+  <ng-template #modalTitle>
+    <span>{{ createMode ? '创建' : '更新TODO: ' + selectedTodo.title }}</span>
+  </ng-template>
+
   <div *nzModalContent>
-    <p>selected todo id {{ selectedTodo.id }}</p>
-    <p>selected todo title {{ selectedTodo.title }}</p>
-    <p>selected todo description {{ selectedTodo.description }}</p>
+    <p>selected todo id {{ selectedTodo?.id }}</p>
+    <p>selected todo title {{ selectedTodo?.title }}</p>
+    <p>selected todo description {{ selectedTodo?.description }}</p>
     <button
       nz-button
       nzType="primary"
@@ -80,7 +87,10 @@
         <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode"
           >title</nz-form-label
         >
-        <nz-form-control [nzSpan]="14" nzErrorTip="Title Field Required!">
+        <nz-form-control
+          [nzSpan]="14"
+          nzErrorTip="Title必填, 并且长度需在2-20个字符间"
+        >
           <nz-input-group
             [nzSuffix]="suffixTemplateInfo"
             [nzPrefix]="prefixTemplateUser"
@@ -113,7 +123,10 @@
         <nz-form-label [nzSpan]="6" nzFor="description"
           >description</nz-form-label
         >
-        <nz-form-control [nzSpan]="14">
+        <nz-form-control
+          [nzSpan]="14"
+          nzErrorTip="描述字符长度需要在2-30个字符间"
+        >
           <nz-input-group
             [nzSuffix]="suffixTemplateInfo"
             [nzPrefix]="prefixTemplateUser"
@@ -149,7 +162,7 @@
             [disabled]="!validateForm.valid"
             style="width: 30%; margin: 0 35%"
           >
-            Log in
+            {{ createMode ? '创建' : '更新' }}
           </button>
         </nz-form-control>
       </nz-form-item>
