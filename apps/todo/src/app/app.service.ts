@@ -5,9 +5,12 @@ import {
   UpdateTodoDTO,
   DeleteTodoDTO,
   TodoItemBase,
+  TodoType,
+  TaggedTodoItem,
 } from '@todoapp/dto';
 import { Observable, of } from 'rxjs';
-import { catchError, tap, pluck, map } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
+import { getRandomInt, TAGS } from '@todoapp/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +20,19 @@ export class AppService {
 
   constructor(private http: HttpClient) {}
 
-  attachRandomTag() {
-    console.log('Yup!');
+  attachRandomTag(item: TodoItemBase): TaggedTodoItem {
+    const randomTagTypeIdx = getRandomInt(1, 5);
+    return {
+      ...item,
+      tag: TAGS[randomTagTypeIdx],
+      tagText: TodoType[randomTagTypeIdx],
+    };
   }
 
-  fetchAll(): Observable<TodoItemBase[]> {
+  fetchAll(): Observable<TaggedTodoItem[]> {
     return this.http.get<TodoItemBase[]>('/api/todos/all').pipe(
       tap((_) => console.log(`fetchAll Data Length: ${_.length}`)),
-      catchError(this.handleError<TodoItemBase[]>('fetchAll', []))
+      map((items) => items.map((item) => this.attachRandomTag(item)))
     );
   }
 

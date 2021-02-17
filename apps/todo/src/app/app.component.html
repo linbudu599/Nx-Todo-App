@@ -1,4 +1,45 @@
-<div class="container" style="width: 100%; height: 100%; padding-top: 10%">
+<div class="container" style="width: 100%; height: 100%; padding-top: 4%">
+  <div
+    style="
+      width: 50%;
+      height: 6%;
+      margin-left: 25%;
+      display: flex;
+      padding: 0 3%;
+      margin-bottom: 1%;
+      justify-content: space-between;
+      align-items: center;
+    "
+  >
+    <button
+      nz-button
+      nzType="primary"
+      (click)="fakeAdd()"
+      style="
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 16px;
+        height: 100%;
+      "
+    >
+      <i nz-icon nzType="copy"></i>新增项(Mock)
+    </button>
+
+    <button
+      nz-button
+      nzType="primary"
+      (click)="realAdd()"
+      style="
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 16px;
+        height: 100%;
+      "
+    >
+      <i nz-icon nzType="plus"></i>新增项(Real)
+    </button>
+  </div>
+
   <div
     *ngFor="let todo of todos; index as i"
     style="
@@ -17,11 +58,23 @@
     "
   >
     <span
+      style="
+        width: 10%;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        border-right: 1px solid steelblue;
+      "
+    >
+      <nz-tag [nzColor]="todo.tag" style="width: 50px">
+        {{ todo.tagText | capitalize }}</nz-tag
+      >
+    </span>
+    <span
       nz-typography
       style="
         font-size: 24px;
         width: 30%;
-
         display: inline-block;
         text-align: center;
         border-right: 1px solid steelblue;
@@ -53,14 +106,6 @@
         line-height: 36px;
       "
     >
-      <!-- <button
-        nz-button
-        nzType="primary"
-        nzShape="circle"
-        (click)="fakeCheckDetail(todo.id)"
-      >
-        <i nz-icon nzType="search"></i>
-      </button> -->
       <button
         nz-button
         nzSize="small"
@@ -73,21 +118,17 @@
         nz-button
         nzSize="small"
         style="border-radius: 5px; font-size: 14px; color: #e60000"
-        (click)="deleteItem({ id: todo.id })"
+        nz-popconfirm
+        nzPopconfirmTitle="确认删除吗?"
+        nzPopconfirmPlacement="top"
+        (nzOnConfirm)="confirmDelete(todo.id, todo.title)"
+        (nzOnCancel)="cancelDelete()"
       >
         <i nz-icon nzType="close"></i>
         移除
       </button>
     </div>
   </div>
-
-  <button nz-button nzType="primary" (click)="fakeAdd()" style="display: block">
-    Fake Add
-  </button>
-
-  <button nz-button nzType="primary" (click)="realAdd()" style="display: block">
-    Real Add
-  </button>
 
   <nz-modal
     [(nzVisible)]="isModalVisible"
@@ -96,29 +137,21 @@
     [nzFooter]="null"
   >
     <ng-template #modalTitle>
-      <span>{{ createMode ? '创建' : '更新TODO: ' + selectedTodo.title }}</span>
+      <span>{{
+        createMode
+          ? '创建'
+          : '更新TODO: ' + selectedTodo.id + '-' + selectedTodo.title
+      }}</span>
     </ng-template>
 
     <div *nzModalContent>
-      <p>selected todo id {{ selectedTodo?.id }}</p>
-      <p>selected todo title {{ selectedTodo?.title }}</p>
-      <p>selected todo description {{ selectedTodo?.description }}</p>
-      <button
-        nz-button
-        nzType="primary"
-        (click)="fakeUpdate(selectedTodo.id)"
-        style="display: block"
-      >
-        Fake Update
-      </button>
-
-      <br />
-
       <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
-          <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode"
-            >title</nz-form-label
-          >
+          <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode">
+            <span nz-typography style="font-size: 16px">
+              <strong>title</strong>
+            </span>
+          </nz-form-label>
           <nz-form-control
             [nzSpan]="14"
             nzErrorTip="Title必填, 并且长度需在2-20个字符间"
@@ -152,8 +185,10 @@
         ></ng-template>
 
         <nz-form-item>
-          <nz-form-label [nzSpan]="6" nzFor="description"
-            >description</nz-form-label
+          <nz-form-label [nzSpan]="6" nzFor="description">
+            <span nz-typography style="font-size: 16px">
+              <strong>description</strong>
+            </span></nz-form-label
           >
           <nz-form-control
             [nzSpan]="14"
@@ -192,7 +227,7 @@
               nz-button
               nzType="primary"
               [disabled]="!validateForm.valid"
-              style="width: 30%; margin: 0 35%"
+              style="width: 20%; margin: 0 40%; border-radius: 5px"
             >
               {{ createMode ? '创建' : '更新' }}
             </button>

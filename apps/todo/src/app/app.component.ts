@@ -5,8 +5,10 @@ import {
   DeleteTodoDTO,
   TodoItemBase,
   UpdateTodoDTO,
+  TaggedTodoItem,
 } from '@todoapp/dto';
 import { AppService } from './app.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'todoapp-root',
@@ -14,9 +16,7 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit {
-  title = 'todo';
-
-  todos: TodoItemBase[];
+  todos: TaggedTodoItem[];
 
   selectedTodo: TodoItemBase;
 
@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly appService: AppService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly nzMessageService: NzMessageService
   ) {}
 
   ngOnInit(): void {
@@ -63,12 +64,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  checkDetail(id: number) {
-    this.appService.fetchById(id).subscribe((todo) => {
-      // TODO: 打开弹窗
-    });
-  }
-
   createItem(createParams: CreateTodoDTO) {
     this.appService.createOne(createParams).subscribe(() => {
       this.initData();
@@ -85,6 +80,15 @@ export class AppComponent implements OnInit {
     this.appService.deleteOne(deleteParams).subscribe(() => {
       this.initData();
     });
+  }
+
+  confirmDelete(id: number, title: string) {
+    this.deleteItem({ id });
+    this.nzMessageService.info(`TODO ${title} 已被删除`);
+  }
+
+  cancelDelete() {
+    this.nzMessageService.info('取消删除');
   }
 
   handleCancel() {

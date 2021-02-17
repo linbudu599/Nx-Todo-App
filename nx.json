@@ -21,6 +21,8 @@
     "api": { "tags": [] },
     "dto": { "tags": [] },
     "validation": { "tags": [] },
-    "ui-components": { "tags": [] }
+    "ui-components": { "tags": [] },
+    "utils": { "tags": [] },
+    "shared": { "tags": [] }
   }
 }

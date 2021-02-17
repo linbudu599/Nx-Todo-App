@@ -53,7 +53,8 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "apps/todo/src/styles.less"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["lodash", "class-validator"]
           },
           "configurations": {
             "production": {
@@ -89,7 +90,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "todo:build",
-            "proxyConfig": "apps/todo/proxy.conf.json"
+            "proxyConfig": "apps/todo/proxy.conf.json",
+            "allowedCommonJsDependencies": ["lodash", "class-validator"]
           },
           "configurations": {
             "production": {
@@ -261,6 +263,52 @@
           "outputs": ["coverage/libs/ui-components"],
           "options": {
             "jestConfig": "libs/ui-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "todoapp",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared"],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
             "passWithNoTests": true
           }
         }

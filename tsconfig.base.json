@@ -19,7 +19,9 @@
     "paths": {
       "@todoapp/dto": ["libs/dto/src/index.ts"],
       "@todoapp/validation": ["libs/validation/src/index.ts"],
-      "@todoapp/ui-components": ["libs/ui-components/src/index.ts"]
+      "@todoapp/ui-components": ["libs/ui-components/src/index.ts"],
+      "@todoapp/utils": ["libs/utils/src/index.ts"],
+      "@todoapp/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

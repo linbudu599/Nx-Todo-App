@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/ddddd',
     '<rootDir>/libs/validation',
     '<rootDir>/libs/ui-components',
+    '<rootDir>/libs/utils',
   ],
 };
