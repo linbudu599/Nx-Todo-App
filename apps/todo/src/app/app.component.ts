@@ -16,6 +16,7 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit {
+  title = 'Your Nx Todo-List';
   todos: TaggedTodoItem[];
 
   @ViewChild(TodoFormComponent)
