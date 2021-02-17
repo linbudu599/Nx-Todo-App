@@ -1,10 +1,20 @@
 <div class="container">
   <div class="create-btn-container">
-    <button nz-button nzType="primary" (click)="fakeAdd()" class="fake-add">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleFakeAdd()"
+      class="fake-add"
+    >
       <i nz-icon nzType="copy"></i>新增项(Mock)
     </button>
 
-    <button nz-button nzType="primary" (click)="realAdd()" class="real-add">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleRealAdd()"
+      class="real-add"
+    >
       <i nz-icon nzType="plus"></i>新增项(Real)
     </button>
   </div>
@@ -15,118 +25,5 @@
     (checkDetailEvt)="handleCheckDetail($event)"
   ></todoapp-todo-item>
 
-  <p *ngIf="isModalVisible">{{ createMode ? 1 : 2 }}</p>
-  <!-- <nz-modal
-    [(nzVisible)]="isModalVisible"
-    [nzTitle]="modalTitle"
-    (nzOnCancel)="handleCancel()"
-    [nzFooter]="null"
-    class="todo-modal"
-  >
-    <ng-template #modalTitle>
-      <span class="todo-modal-title">{{
-        createMode
-          ? '创建'
-          : '更新TODO: ' + selectedTodo.id + '-' + selectedTodo.title
-      }}</span>
-    </ng-template>
-
-    <div *nzModalContent class="todo-modal-content">
-      <form
-        nz-form
-        [formGroup]="validateForm"
-        (ngSubmit)="submitForm()"
-        class="todo-modal-content-form"
-      >
-        <nz-form-item class="todo-modal-content-form-item">
-          <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode">
-            <span nz-typography style="font-size: 16px">
-              <strong>title</strong>
-            </span>
-          </nz-form-label>
-          <nz-form-control
-            [nzSpan]="14"
-            nzErrorTip="Title必填, 并且长度需在2-20个字符间"
-          >
-            <nz-input-group
-              [nzSuffix]="suffixTemplateInfo"
-              [nzPrefix]="prefixTemplateUser"
-            >
-              <input
-                nz-input
-                formControlName="title"
-                name="title"
-                autocomplete="off"
-                placeholder="TODO TITLE"
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <ng-template #prefixTemplateUser
-          ><i nz-icon nzType="user"></i
-        ></ng-template>
-        <ng-template #suffixTemplateInfo
-          ><i
-            nz-icon
-            nz-tooltip
-            nzTooltipTitle="Extra information"
-            nzTooltipTrigger="hover"
-            nzType="info-circle"
-          ></i
-        ></ng-template>
-
-        <nz-form-item class="todo-modal-content-form-item">
-          <nz-form-label [nzSpan]="6" nzFor="description">
-            <span nz-typography style="font-size: 16px">
-              <strong>description</strong>
-            </span></nz-form-label
-          >
-          <nz-form-control
-            [nzSpan]="14"
-            nzErrorTip="描述字符长度需要在2-30个字符间"
-          >
-            <nz-input-group
-              [nzSuffix]="suffixTemplateInfo"
-              [nzPrefix]="prefixTemplateUser"
-            >
-              <input
-                nz-input
-                formControlName="description"
-                name="description"
-                autocomplete="off"
-                placeholder="TODO DESCRIPTION"
-              />
-            </nz-input-group>
-            <ng-template #prefixTemplateUser
-              ><i nz-icon nzType="user"></i
-            ></ng-template>
-            <ng-template #suffixTemplateInfo
-              ><i
-                nz-icon
-                nz-tooltip
-                nzTooltipTitle="Extra information"
-                nzType="info-circle"
-              ></i
-            ></ng-template>
-            <br />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item class="todo-modal-content-form-item">
-          <nz-form-control>
-            <button
-              nz-button
-              nzType="primary"
-              [disabled]="!validateForm.valid"
-              class="todo-modal-content-form-submit"
-            >
-              {{ createMode ? '创建' : '更新' }}
-            </button>
-          </nz-form-control>
-        </nz-form-item>
-      </form>
-    </div>
-  </nz-modal>
-</div> -->
+  <todoapp-todo-form (submitEvt)="handleSubmit($event)"></todoapp-todo-form>
 </div>

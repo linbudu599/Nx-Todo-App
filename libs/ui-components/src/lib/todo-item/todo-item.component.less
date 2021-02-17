@@ -1,0 +1,61 @@
+.todo-item-container {
+  width: 50%;
+  height: 9%;
+  border: 2px solid steelblue;
+  border-radius: 5px;
+  margin-left: 25%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  line-height: 36px;
+
+  .todo-item-tag-span {
+    width: 10%;
+    display: inline-block;
+    text-align: center;
+    margin-left: 6px;
+    border-right: 1px solid steelblue;
+
+    .todo-item-tag {
+      width: 50px;
+    }
+  }
+
+  .todo-item-title {
+    font-size: 24px;
+    width: 30%;
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid steelblue;
+  }
+
+  .todo-item-description {
+    font-size: 18px;
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid steelblue;
+  }
+
+  .todo-item-operation {
+    width: 30%;
+    display: inline-block;
+    text-align: center;
+    line-height: 36px;
+
+    .todo-item-operation-edit {
+      border-radius: 5px;
+      font-size: 14px;
+      margin-right: 15px;
+    }
+
+    .todo-item-operation-remove {
+      border-radius: 5px;
+      font-size: 14px;
+      color: #e60000;
+    }
+  }
+}

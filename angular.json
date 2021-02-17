@@ -90,8 +90,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "todo:build",
-            "proxyConfig": "apps/todo/proxy.conf.json",
-            "allowedCommonJsDependencies": ["lodash", "class-validator"]
+            "proxyConfig": "apps/todo/proxy.conf.json"
           },
           "configurations": {
             "production": {
