@@ -27,6 +27,8 @@ import { SharedModule } from '@todoapp/shared';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
+import { UiComponentsModule } from '@todoapp/ui-components';
+
 registerLocaleData(zh);
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -57,6 +59,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     SharedModule,
     NzPopconfirmModule,
     NzMessageModule,
+    UiComponentsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],

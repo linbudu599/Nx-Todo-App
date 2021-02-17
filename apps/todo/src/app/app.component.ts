@@ -53,8 +53,26 @@ export class AppComponent implements OnInit {
           Validators.maxLength(20),
         ],
       ],
-      // 非必填项似乎不能这么用 得手写验证器了
+
       description: [null, [Validators.minLength(2), Validators.maxLength(30)]],
+    });
+  }
+
+  handleRemove(deleteEvtParams: DeleteTodoDTO) {
+    this.appService.deleteOne(deleteEvtParams).subscribe(() => {
+      this.initData();
+    });
+  }
+
+  handleCheckDetail(itemId: number) {
+    this.createMode = false;
+    this.appService.fetchById(itemId).subscribe((todo) => {
+      this.selectedTodo = todo;
+      this.validateForm.setValue({
+        title: todo.title,
+        description: todo.description,
+      });
+      this.isModalVisible = true;
     });
   }
 
@@ -74,21 +92,6 @@ export class AppComponent implements OnInit {
     this.appService.updateOne(updateParams).subscribe(() => {
       this.initData();
     });
-  }
-
-  deleteItem(deleteParams: DeleteTodoDTO) {
-    this.appService.deleteOne(deleteParams).subscribe(() => {
-      this.initData();
-    });
-  }
-
-  confirmDelete(id: number, title: string) {
-    this.deleteItem({ id });
-    this.nzMessageService.info(`TODO ${title} 已被删除`);
-  }
-
-  cancelDelete() {
-    this.nzMessageService.info('取消删除');
   }
 
   handleCancel() {
