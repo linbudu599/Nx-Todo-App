@@ -1,14 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { CreateTodoDTO, TodoItemBase, UpdateTodoDTO } from '@todoapp/dto';
 
 export type SubmitEvt =
   | {
-      isCreate: true;
+      readonly isCreate: true;
       payload: CreateTodoDTO;
     }
   | {
-      isCreate: false;
+      readonly isCreate: false;
       payload: UpdateTodoDTO;
     };
 

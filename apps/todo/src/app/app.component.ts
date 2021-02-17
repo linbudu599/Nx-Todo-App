@@ -1,20 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+
 import {
   CreateTodoDTO,
   DeleteTodoDTO,
-  TodoItemBase,
   UpdateTodoDTO,
   TaggedTodoItem,
 } from '@todoapp/dto';
+import { TodoFormComponent, SubmitEvt } from '@todoapp/ui-components';
+
 import { AppService } from './app.service';
-import { NzMessageService } from 'ng-zorro-antd/message';
-// FIXME: import
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {
-  TodoFormComponent,
-  SubmitEvt,
-} from 'libs/ui-components/src/lib/todo-form/todo-form.component';
 
 @Component({
   selector: 'todoapp-root',
@@ -48,31 +42,30 @@ export class AppComponent implements OnInit {
     });
   }
 
-  handleRemove(deleteEvtParams: DeleteTodoDTO) {
+  handleRemove(deleteEvtParams: DeleteTodoDTO): void {
     this.appService.deleteOne(deleteEvtParams).subscribe(() => {
       this.initData();
     });
   }
 
-  handleCheckDetail(itemId: number) {
+  handleCheckDetail(itemId: number): void {
     this.appService.fetchById(itemId).subscribe((todo) => {
       this.formComponent.handleModelOpen(false, todo);
     });
   }
 
-  handleFakeAdd() {
+  handleFakeAdd(): void {
     this.createItem({
       title: '欧拉欧拉欧拉',
       description: '木大木大木大木大木大',
     });
   }
 
-  handleRealAdd() {
+  handleRealAdd(): void {
     this.formComponent.handleModelOpen(true, { title: '', description: '' });
   }
 
   handleSubmit(evt: SubmitEvt) {
-    // FIXME: error type inferrence?
     evt.isCreate
       ? this.createItem(evt.payload)
       : this.updateItem(evt.payload as UpdateTodoDTO);
