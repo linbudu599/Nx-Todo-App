@@ -16,3 +16,4 @@ WIP
 - [ ] 抽离Form组件
 - [ ] 抽离Item组件
 - [ ] 自定义验证器
+- [ ] Unit/E2E Test in Anuglar/Nest App

@@ -1,171 +1,204 @@
-<a
-  href="https://github.com/NG-ZORRO/ng-zorro-antd"
-  target="_blank"
-  style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  "
->
-  <img
-    height="200"
-    src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg"
-  />
-</a>
-
-<nz-space style="margin-bottom: 20px">
+<div class="container" style="width: 100%; height: 100%; padding-top: 10%">
   <div
     *ngFor="let todo of todos; index as i"
-    style="width: 100px; margin-right: 20px"
+    style="
+      width: 50%;
+      height: 9%;
+      border: 2px solid steelblue;
+      border-radius: 5px;
+      margin-left: 25%;
+      margin-bottom: 1%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      line-height: 36px;
+    "
   >
-    <nz-space-item>
-      <span>id: {{ todo.id }}</span>
-    </nz-space-item>
-    <nz-space-item>
-      <span>title: {{ todo.title }}</span>
-    </nz-space-item>
-    <nz-space-item>
-      <span>desc: {{ todo.description }}</span>
-    </nz-space-item>
-    <button
-      nz-button
-      nzType="primary"
-      nzShape="circle"
-      (click)="fakeCheckDetail(todo.id)"
+    <span
+      nz-typography
+      style="
+        font-size: 24px;
+        width: 30%;
+
+        display: inline-block;
+        text-align: center;
+        border-right: 1px solid steelblue;
+      "
+      ><strong> {{ todo.title | nzEllipsis: 8:'...' }}</strong></span
     >
-      <i nz-icon nzType="search"></i>
-    </button>
-    <button
-      nz-button
-      nzType="primary"
-      nzShape="circle"
-      (click)="deleteItem({ id: todo.id })"
+
+    <span
+      nz-typography
+      style="
+        font-size: 18px;
+        width: 40%;
+        display: inline-block;
+        text-align: center;
+        border-right: 1px solid steelblue;
+      "
+      >{{
+        (todo.description ? '' + todo.description : '暂无描述')
+          | nzEllipsis: 16:'...'
+      }}</span
     >
-      <i nz-icon nzType="close"></i>
-    </button>
-    <br />
+
+    <div
+      class="operation"
+      style="
+        width: 30%;
+        display: inline-block;
+        text-align: center;
+        line-height: 36px;
+      "
+    >
+      <!-- <button
+        nz-button
+        nzType="primary"
+        nzShape="circle"
+        (click)="fakeCheckDetail(todo.id)"
+      >
+        <i nz-icon nzType="search"></i>
+      </button> -->
+      <button
+        nz-button
+        nzSize="small"
+        style="border-radius: 5px; font-size: 14px; margin-right: 15px"
+        (click)="fakeCheckDetail(todo.id)"
+      >
+        <i nz-icon nzType="edit" [nzTheme]="'twotone'"></i>编辑
+      </button>
+      <button
+        nz-button
+        nzSize="small"
+        style="border-radius: 5px; font-size: 14px; color: #e60000"
+        (click)="deleteItem({ id: todo.id })"
+      >
+        <i nz-icon nzType="close"></i>
+        移除
+      </button>
+    </div>
   </div>
-</nz-space>
 
-<button nz-button nzType="primary" (click)="fakeAdd()" style="display: block">
-  Fake Add
-</button>
+  <button nz-button nzType="primary" (click)="fakeAdd()" style="display: block">
+    Fake Add
+  </button>
 
-<button nz-button nzType="primary" (click)="realAdd()" style="display: block">
-  Real Add
-</button>
+  <button nz-button nzType="primary" (click)="realAdd()" style="display: block">
+    Real Add
+  </button>
 
-<nz-modal
-  [(nzVisible)]="isModalVisible"
-  [nzTitle]="modalTitle"
-  (nzOnCancel)="handleCancel()"
-  [nzFooter]="null"
->
-  <ng-template #modalTitle>
-    <span>{{ createMode ? '创建' : '更新TODO: ' + selectedTodo.title }}</span>
-  </ng-template>
+  <nz-modal
+    [(nzVisible)]="isModalVisible"
+    [nzTitle]="modalTitle"
+    (nzOnCancel)="handleCancel()"
+    [nzFooter]="null"
+  >
+    <ng-template #modalTitle>
+      <span>{{ createMode ? '创建' : '更新TODO: ' + selectedTodo.title }}</span>
+    </ng-template>
 
-  <div *nzModalContent>
-    <p>selected todo id {{ selectedTodo?.id }}</p>
-    <p>selected todo title {{ selectedTodo?.title }}</p>
-    <p>selected todo description {{ selectedTodo?.description }}</p>
-    <button
-      nz-button
-      nzType="primary"
-      (click)="fakeUpdate(selectedTodo.id)"
-      style="display: block"
-    >
-      Fake Update
-    </button>
+    <div *nzModalContent>
+      <p>selected todo id {{ selectedTodo?.id }}</p>
+      <p>selected todo title {{ selectedTodo?.title }}</p>
+      <p>selected todo description {{ selectedTodo?.description }}</p>
+      <button
+        nz-button
+        nzType="primary"
+        (click)="fakeUpdate(selectedTodo.id)"
+        style="display: block"
+      >
+        Fake Update
+      </button>
 
-    <br />
+      <br />
 
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode"
-          >title</nz-form-label
-        >
-        <nz-form-control
-          [nzSpan]="14"
-          nzErrorTip="Title必填, 并且长度需在2-20个字符间"
-        >
-          <nz-input-group
-            [nzSuffix]="suffixTemplateInfo"
-            [nzPrefix]="prefixTemplateUser"
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="title" [nzRequired]="createMode"
+            >title</nz-form-label
           >
-            <input
-              nz-input
-              formControlName="title"
-              name="title"
-              autocomplete="off"
-              placeholder="TODO TITLE"
-            />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-
-      <ng-template #prefixTemplateUser
-        ><i nz-icon nzType="user"></i
-      ></ng-template>
-      <ng-template #suffixTemplateInfo
-        ><i
-          nz-icon
-          nz-tooltip
-          nzTooltipTitle="Extra information"
-          nzTooltipTrigger="hover"
-          nzType="info-circle"
-        ></i
-      ></ng-template>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="description"
-          >description</nz-form-label
-        >
-        <nz-form-control
-          [nzSpan]="14"
-          nzErrorTip="描述字符长度需要在2-30个字符间"
-        >
-          <nz-input-group
-            [nzSuffix]="suffixTemplateInfo"
-            [nzPrefix]="prefixTemplateUser"
+          <nz-form-control
+            [nzSpan]="14"
+            nzErrorTip="Title必填, 并且长度需在2-20个字符间"
           >
-            <input
-              nz-input
-              formControlName="description"
-              name="description"
-              autocomplete="off"
-              placeholder="TODO DESCRIPTION"
-            />
-          </nz-input-group>
-          <ng-template #prefixTemplateUser
-            ><i nz-icon nzType="user"></i
-          ></ng-template>
-          <ng-template #suffixTemplateInfo
-            ><i
-              nz-icon
-              nz-tooltip
-              nzTooltipTitle="Extra information"
-              nzType="info-circle"
-            ></i
-          ></ng-template>
-          <br />
-        </nz-form-control>
-      </nz-form-item>
+            <nz-input-group
+              [nzSuffix]="suffixTemplateInfo"
+              [nzPrefix]="prefixTemplateUser"
+            >
+              <input
+                nz-input
+                formControlName="title"
+                name="title"
+                autocomplete="off"
+                placeholder="TODO TITLE"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-control>
-          <button
-            nz-button
-            nzType="primary"
-            [disabled]="!validateForm.valid"
-            style="width: 30%; margin: 0 35%"
+        <ng-template #prefixTemplateUser
+          ><i nz-icon nzType="user"></i
+        ></ng-template>
+        <ng-template #suffixTemplateInfo
+          ><i
+            nz-icon
+            nz-tooltip
+            nzTooltipTitle="Extra information"
+            nzTooltipTrigger="hover"
+            nzType="info-circle"
+          ></i
+        ></ng-template>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="description"
+            >description</nz-form-label
           >
-            {{ createMode ? '创建' : '更新' }}
-          </button>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-  </div>
-</nz-modal>
+          <nz-form-control
+            [nzSpan]="14"
+            nzErrorTip="描述字符长度需要在2-30个字符间"
+          >
+            <nz-input-group
+              [nzSuffix]="suffixTemplateInfo"
+              [nzPrefix]="prefixTemplateUser"
+            >
+              <input
+                nz-input
+                formControlName="description"
+                name="description"
+                autocomplete="off"
+                placeholder="TODO DESCRIPTION"
+              />
+            </nz-input-group>
+            <ng-template #prefixTemplateUser
+              ><i nz-icon nzType="user"></i
+            ></ng-template>
+            <ng-template #suffixTemplateInfo
+              ><i
+                nz-icon
+                nz-tooltip
+                nzTooltipTitle="Extra information"
+                nzType="info-circle"
+              ></i
+            ></ng-template>
+            <br />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              nz-button
+              nzType="primary"
+              [disabled]="!validateForm.valid"
+              style="width: 30%; margin: 0 35%"
+            >
+              {{ createMode ? '创建' : '更新' }}
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </nz-modal>
+</div>

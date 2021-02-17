@@ -21,6 +21,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
+import { NzPipesModule } from 'ng-zorro-antd/pipes';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+
 registerLocaleData(zh);
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -46,6 +49,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     NzFormModule,
     NzInputModule,
     NzToolTipModule,
+    NzPipesModule,
+    NzTypographyModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],

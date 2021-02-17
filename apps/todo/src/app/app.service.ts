@@ -17,6 +17,10 @@ export class AppService {
 
   constructor(private http: HttpClient) {}
 
+  attachRandomTag() {
+    console.log('Yup!');
+  }
+
   fetchAll(): Observable<TodoItemBase[]> {
     return this.http.get<TodoItemBase[]>('/api/todos/all').pipe(
       tap((_) => console.log(`fetchAll Data Length: ${_.length}`)),
