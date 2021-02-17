@@ -21,8 +21,8 @@ export interface TaggedTodoItem extends TodoItemBase {
 
 export type ImmutableTodoItem = Readonly<TodoItemBase>;
 
-// 类型体操安排下
-// export type CreateTodoItemPayload = Omit<TodoItemBase, "id">
+// 也可以类型体操安排下 但我懒得搞了
+// XXXTodoPayload是不必要的 可以直接定义校验类
 export type CreateTodoItemPayload = {
   title: string;
   description?: string;
