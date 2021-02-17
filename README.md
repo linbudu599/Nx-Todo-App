@@ -1,5 +1,11 @@
 # Nx-Todo-App
 
+## Notice
+
+**This project is still under development, so donot regard it as fully qualified.**
+
+See below for what is considered to be included in this project.
+
 ## Start
 
 ```bash
@@ -50,4 +56,36 @@ For more infos, see official document below.
 ## Todo
 
 - [ ] Unit/E2E Test in Anuglar/Nest App (Jest + Cypress)
-- [ ] CI/CD + Nx Cloud
+- [ ] CI/CD
+
+## Explore
+
+You can check these explores in another applications, app `todo` will just keep simple "Todo App".
+
+### Nx
+
+- [ ] Nx Cloud
+- [ ] Workflow Enhancement
+
+### FrontEnd
+
+- [ ] i18n
+- [ ] Router for various playgrounds
+- [ ] Directives
+- [ ] Lifecycle Usage
+- [ ] Component Interaction
+- [ ] Custom Element
+- [ ] Pipes
+- [ ] Form
+  - [ ] Template Driven / Responsive
+  - [ ] Validators
+- [ ] Http Client
+- [ ] Apollo-Angular
+- [ ] More Ng-zorro Components
+- [ ] NgRx
+- [ ] More Angular libraries
+
+### BackEnd
+
+- [ ] GraphQL API by TypeGraphQL
+- [ ] WIP
