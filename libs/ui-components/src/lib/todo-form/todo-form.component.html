@@ -30,10 +30,7 @@
           [nzSpan]="14"
           nzErrorTip="Title必填, 并且长度需在2-20个字符间"
         >
-          <nz-input-group
-            [nzSuffix]="suffixTemplateInfo"
-            [nzPrefix]="prefixTemplateUser"
-          >
+          <nz-input-group [nzSuffix]="suffixTemplateTitle">
             <input
               nz-input
               formControlName="title"
@@ -45,17 +42,8 @@
         </nz-form-control>
       </nz-form-item>
 
-      <ng-template #prefixTemplateUser
-        ><i nz-icon nzType="user"></i
-      ></ng-template>
-      <ng-template #suffixTemplateInfo
-        ><i
-          nz-icon
-          nz-tooltip
-          nzTooltipTitle="Extra information"
-          nzTooltipTrigger="hover"
-          nzType="info-circle"
-        ></i
+      <ng-template #suffixTemplateTitle
+        ><i nz-icon nzType="tags"></i
       ></ng-template>
 
       <nz-form-item class="todo-modal-content-form-item">
@@ -68,10 +56,7 @@
           [nzSpan]="14"
           nzErrorTip="描述字符长度需要在2-30个字符间"
         >
-          <nz-input-group
-            [nzSuffix]="suffixTemplateInfo"
-            [nzPrefix]="prefixTemplateUser"
-          >
+          <nz-input-group [nzSuffix]="suffixTemplateDesc">
             <input
               nz-input
               formControlName="description"
@@ -80,17 +65,11 @@
               placeholder="TODO DESCRIPTION"
             />
           </nz-input-group>
-          <ng-template #prefixTemplateUser
-            ><i nz-icon nzType="user"></i
+
+          <ng-template #suffixTemplateDesc
+            ><i nz-icon nzType="carry-out"></i
           ></ng-template>
-          <ng-template #suffixTemplateInfo
-            ><i
-              nz-icon
-              nz-tooltip
-              nzTooltipTitle="Extra information"
-              nzType="info-circle"
-            ></i
-          ></ng-template>
+
           <br />
         </nz-form-control>
       </nz-form-item>

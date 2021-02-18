@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/libs/validation',
     '<rootDir>/libs/ui-components',
     '<rootDir>/libs/utils',
+    '<rootDir>/apps/enhanced-todo',
   ],
 };

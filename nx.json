@@ -23,6 +23,11 @@
     "validation": { "tags": [] },
     "ui-components": { "tags": [] },
     "utils": { "tags": [] },
-    "shared": { "tags": [] }
+    "shared": { "tags": [] },
+    "enhanced-todo": { "tags": [] },
+    "enhanced-todo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["enhanced-todo"]
+    }
   }
 }
