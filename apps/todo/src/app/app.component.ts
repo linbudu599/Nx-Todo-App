@@ -16,7 +16,7 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit {
-  title = 'Your Nx Todo-List';
+  title = 'Nx Todo-List';
   todos: TaggedTodoItem[];
 
   @ViewChild(TodoFormComponent)
@@ -25,15 +25,6 @@ export class AppComponent implements OnInit {
   constructor(private readonly appService: AppService) {}
 
   ngOnInit(): void {
-    // this.appService.fetchAll().subscribe((x) => console.log(x));
-    // this.appService.fetchById(1).subscribe((x) => console.log(x));
-    // this.appService
-    //   .createOne({ title: 'xxx' })
-    //   .subscribe((x) => console.log(x));
-    // this.appService
-    //   .updateOne({ id: 1, title: 'uuuuu' })
-    //   .subscribe((x) => console.log(x));
-    // this.appService.deleteOne({ id: 5 }).subscribe((x) => console.log(x));
     this.initData();
   }
 
