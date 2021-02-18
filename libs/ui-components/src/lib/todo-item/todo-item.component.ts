@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DeleteTodoDTO, TaggedTodoItem, UpdateTodoDTO } from '@todoapp/dto';
+import {
+  DeleteTodoDTO,
+  TaggedTodoItem,
+  TodoItemBase,
+  UpdateTodoDTO,
+} from '@todoapp/dto';
 
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -16,11 +21,19 @@ export class TodoItemComponent implements OnInit {
 
   @Output() checkDetailEvt = new EventEmitter<number>();
 
+  itemHighlightColor: string;
+  itemDefaultHighlightColor?: string;
+
   ngOnInit(): void {
+    this.itemHighlightColor = 'steelblue';
     console.log('TodoItemComponent Init');
   }
 
   constructor(private readonly nzMessageService: NzMessageService) {}
+
+  todoItemTracker(_idx: number, item: TodoItemBase): number {
+    return item.id;
+  }
 
   confirmDelete(id: number, title: string) {
     this.removeEvt.emit({ id });
