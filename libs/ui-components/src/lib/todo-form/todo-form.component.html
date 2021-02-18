@@ -6,11 +6,17 @@
   class="todo-modal"
 >
   <ng-template #modalTitle>
-    <span class="todo-modal-title">{{
-      createMode
-        ? '创建'
-        : '更新TODO: ' + selectedTodo.id + '-' + selectedTodo.title
-    }}</span>
+    <span
+      class="todo-modal-title"
+      [ngClass]="
+        createMode ? 'todo-modal-title-create' : 'todo-modal-title-update'
+      "
+      >{{
+        createMode
+          ? '创建'
+          : '更新TODO: ' + selectedTodo.id + '-' + selectedTodo.title
+      }}</span
+    >
   </ng-template>
 
   <div *nzModalContent class="todo-modal-content">

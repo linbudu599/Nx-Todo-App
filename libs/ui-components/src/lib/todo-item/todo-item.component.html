@@ -1,10 +1,17 @@
-<div *ngFor="let todo of todos; index as i" class="todo-item-container">
+<div
+  *ngFor="let todo of todos; index as i; trackBy: todoItemTracker"
+  class="todo-item-container"
+>
   <span class="todo-item-tag-span">
     <nz-tag [nzColor]="todo.tag" class="todo-item-tag">
       {{ todo.tagText | capitalize }}</nz-tag
     >
   </span>
-  <span nz-typography class="todo-item-title"
+  <span
+    nz-typography
+    class="todo-item-title"
+    [todoappHighlight]="itemHighlightColor"
+    inputDefaultColor="itemDefaultHighlightColor"
     ><strong> {{ todo.title | nzEllipsis: 8:'...' }}</strong></span
   >
 
