@@ -6,6 +6,11 @@
 
 See below for what is considered to be included in this project.
 
+If what you want is just a simple demo guiding on how to use Nx in Angular + NestJS monorepo setup, check:
+
+- [api(backend by NestJS)](apps/api/src/app/app.module.ts)
+- [todo(frontend by Angular)](apps/todo/src/app/app.module.ts)
+
 ## Start
 
 ```bash
@@ -60,7 +65,7 @@ For more infos, see official document below.
 
 ## Explore
 
-You can check these explores in another applications, app `todo` will just keep simple "Todo App".
+You can check these explores in another applications, app `todo` will just keep as a simple "Todo App".
 
 ### Nx
 

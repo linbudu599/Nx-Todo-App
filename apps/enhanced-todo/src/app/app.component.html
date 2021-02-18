@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="logo-container">
+    <img src="https://nx.dev/assets/images/nx-logo-white.svg" alt="nx-logo" />
+  </div>
+  <h2 nz-typography class="title">{{ title }}</h2>
+  <div class="create-btn-container">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleFakeAdd()"
+      class="fake-add"
+    >
+      <i nz-icon nzType="copy"></i>新增项(Mock)
+    </button>
+
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleRealAdd()"
+      class="real-add"
+    >
+      <i nz-icon nzType="plus"></i>新增项(Real)
+    </button>
+  </div>
+
+  <todoapp-todo-item
+    [todos]="todos"
+    (removeEvt)="handleRemove($event)"
+    (checkDetailEvt)="handleCheckDetail($event)"
+  ></todoapp-todo-item>
+
+  <todoapp-todo-form (submitEvt)="handleSubmit($event)"></todoapp-todo-form>
+</div>
