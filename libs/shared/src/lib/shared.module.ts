@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CapitalizePipe } from './pipes.pipe';
-import { TitleHighlightDirective } from './directives.directive';
+import {
+  TitleHighlightDirective,
+  UnlessDirective,
+} from './directives.directive';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [CapitalizePipe, TitleHighlightDirective],
-  exports: [CapitalizePipe, TitleHighlightDirective],
+  declarations: [CapitalizePipe, TitleHighlightDirective, UnlessDirective],
+  exports: [CapitalizePipe, TitleHighlightDirective, UnlessDirective],
 })
 export class SharedModule {}

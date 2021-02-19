@@ -76,11 +76,11 @@ You can check these explores in another applications, app `todo` will just keep 
 
 - [ ] i18n
 - [ ] Router for various playgrounds
-- [ ] Directives
+- [x] Directives
 - [ ] Lifecycle Usage
 - [ ] Component Interaction
 - [ ] Custom Element
-- [ ] Pipes
+- [x] Pipes
 - [ ] Form
   - [ ] Template Driven / Responsive
   - [ ] Validators
