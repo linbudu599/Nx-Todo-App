@@ -1,13 +1,16 @@
 import { Module, Provider } from '@nestjs/common';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeGraphQLModule } from 'typegraphql-nestjs';
 
 import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 import path from 'path';
 import { TodoItemBase } from '@todoapp/dto';
 
+import GraphQLModule from './graphql/graphql.module';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { DB_PROVIDER_TOKEN, DBType } from './constants';
 
 const adapter = new FileSync(path.resolve(__dirname, '../../..', 'db.json'));
@@ -27,7 +30,16 @@ export const LowdbProvider: Provider<DBType> = {
 };
 
 @Module({
-  imports: [],
+  imports: [
+    GraphQLModule,
+    TypeGraphQLModule.forRoot({
+      emitSchemaFile: true,
+      validate: false,
+      playground: true,
+      authChecker: () => true,
+      dateScalarMode: 'timestamp',
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService, LowdbProvider],
 })
