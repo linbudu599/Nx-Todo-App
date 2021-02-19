@@ -18,6 +18,11 @@ import { TodoValidationPipe } from '@todoapp/validation';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get('/')
+  welcome() {
+    return 'Welcome to Nest + Angular';
+  }
+
   @Get('/all')
   getAllTodos() {
     return this.appService.getAll();

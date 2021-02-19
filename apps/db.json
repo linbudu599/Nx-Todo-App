@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Nx",
+      "description": "Use It!"
+    },
+    {
+      "id": 2,
+      "title": "Angular",
+      "description": "Great Angular"
+    }
+  ]
+}
