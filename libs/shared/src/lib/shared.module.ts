@@ -4,11 +4,22 @@ import { CapitalizePipe } from './pipes.pipe';
 import {
   TitleHighlightDirective,
   UnlessDirective,
+  DCHostDirective,
 } from './directives.directive';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [CapitalizePipe, TitleHighlightDirective, UnlessDirective],
-  exports: [CapitalizePipe, TitleHighlightDirective, UnlessDirective],
+  declarations: [
+    CapitalizePipe,
+    TitleHighlightDirective,
+    UnlessDirective,
+    DCHostDirective,
+  ],
+  exports: [
+    CapitalizePipe,
+    TitleHighlightDirective,
+    UnlessDirective,
+    DCHostDirective,
+  ],
 })
 export class SharedModule {}

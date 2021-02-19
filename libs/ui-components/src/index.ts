@@ -6,3 +6,5 @@ export * from './lib/todo-item/todo-item.component';
 
 export * from './lib/pop-up/pop-up.component';
 export * from './lib/pop-up/pop-up.service';
+
+export * from './lib/dynamic-comp/dynamic-comp.component';

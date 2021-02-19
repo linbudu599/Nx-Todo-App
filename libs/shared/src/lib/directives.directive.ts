@@ -70,3 +70,11 @@ export class UnlessDirective {
     private readonly viewContainer: ViewContainerRef
   ) {}
 }
+
+// Dynamic Component Host
+@Directive({ selector: '[todoappDCHost]' })
+export class DCHostDirective {
+  constructor(public viewContainerRef: ViewContainerRef) {
+    console.log('viewContainerRef: ', viewContainerRef);
+  }
+}

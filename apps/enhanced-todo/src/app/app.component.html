@@ -30,5 +30,10 @@
     (checkDetailEvt)="handleCheckDetail($event)"
   ></todoapp-todo-item>
 
+  <div class="explore-container">
+    <h1>Explore Time!</h1>
+    <todoapp-dynamic-comp [datas]="dynamicCompDatas"></todoapp-dynamic-comp>
+  </div>
+
   <todoapp-todo-form (submitEvt)="handleSubmit($event)"></todoapp-todo-form>
 </div>

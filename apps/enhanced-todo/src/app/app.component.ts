@@ -6,7 +6,12 @@ import {
   UpdateTodoDTO,
   TaggedTodoItem,
 } from '@todoapp/dto';
-import { TodoFormComponent, SubmitEvt } from '@todoapp/ui-components';
+import {
+  TodoFormComponent,
+  SubmitEvt,
+  NumberDynamicComponent,
+  StringDynamicComponent,
+} from '@todoapp/ui-components';
 
 import { AppService } from './app.service';
 
@@ -18,6 +23,11 @@ import { AppService } from './app.service';
 export class AppComponent implements OnInit {
   title = 'Nx Todo-List(Enhanced)';
   todos: TaggedTodoItem[];
+
+  dynamicCompDatas = [
+    { payload: 599, component: NumberDynamicComponent },
+    { payload: '林不渡', component: StringDynamicComponent },
+  ];
 
   @ViewChild(TodoFormComponent)
   private formComponent: TodoFormComponent;

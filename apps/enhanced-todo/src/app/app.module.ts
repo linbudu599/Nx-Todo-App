@@ -1,3 +1,4 @@
+import '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -23,6 +24,7 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -69,6 +71,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     NzTypographyModule,
     NzPopconfirmModule,
     NzMessageModule,
+    NzDividerModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
 
