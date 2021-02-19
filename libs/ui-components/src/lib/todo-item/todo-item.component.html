@@ -13,6 +13,7 @@
       class="todo-item-title"
       [todoappHighlight]="itemHighlightColor"
       inputDefaultColor="itemDefaultHighlightColor"
+      (click)="invokePopOnEnhancedAppOnly(todo.title)"
       ><strong> {{ todo.title | nzEllipsis: 8:'...' }}</strong></span
     >
 

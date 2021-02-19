@@ -2,15 +2,13 @@
 
 ## Notice
 
-**This project is still under development, so donot regard it as fully qualified.**
+**This project includes these parts:**
 
-See below for what is considered to be included in this project.
+- [simple todo app by Angular](apps/todo/)
+- [enhanced todo app by Angular(**WIP**)](apps/enhanced-todo/)
+- [api server by NestJS](apps/api/)
 
-If what you want is just a simple demo guiding on how to use Nx in Angular + NestJS monorepo setup, check:
-
-- [api(backend by NestJS)](apps/api/src/app/app.module.ts)
-- [todo(frontend by Angular)](apps/todo/src/app/app.module.ts)
-
+For simple Nx usage, just check the simple one.
 ## Start
 
 ```bash
@@ -62,35 +60,3 @@ For more infos, see official document below.
 
 - [ ] Unit/E2E Test in Anuglar/Nest App (Jest + Cypress)
 - [ ] CI/CD
-
-## Explore
-
-You can check these explores in another applications, app `todo` will just keep as a simple "Todo App".
-
-### Nx
-
-- [ ] Nx Cloud
-- [ ] Workflow Enhancement
-
-### FrontEnd
-
-- [ ] i18n
-- [ ] Router for various playgrounds
-- [x] Directives
-- [ ] Lifecycle Usage
-- [ ] Component Interaction
-- [ ] Custom Element
-- [x] Pipes
-- [ ] Form
-  - [ ] Template Driven / Responsive
-  - [ ] Validators
-- [ ] Http Client
-- [ ] Apollo-Angular
-- [ ] More Ng-zorro Components
-- [ ] NgRx
-- [ ] More Angular libraries
-
-### BackEnd
-
-- [ ] GraphQL API by TypeGraphQL
-- [ ] WIP

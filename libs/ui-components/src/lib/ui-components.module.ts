@@ -18,8 +18,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { PopUpService } from './pop-up/pop-up.service';
 
 import { SharedModule } from '@todoapp/shared';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
   imports: [
@@ -42,7 +44,9 @@ import { SharedModule } from '@todoapp/shared';
     NzFormModule,
     NzInputModule,
   ],
+  providers: [PopUpService],
   declarations: [TodoItemComponent, TodoFormComponent],
   exports: [TodoItemComponent, TodoFormComponent],
+  entryComponents: [PopUpComponent],
 })
 export class UiComponentsModule {}

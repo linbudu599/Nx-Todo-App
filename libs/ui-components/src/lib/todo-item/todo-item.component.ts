@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Injector,
+} from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import {
   DeleteTodoDTO,
   TaggedTodoItem,
@@ -8,6 +16,9 @@ import {
 
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { PopUpComponent } from '../pop-up/pop-up.component';
+import { PopUpService } from '../pop-up/pop-up.service';
+
 @Component({
   selector: 'todoapp-todo-item',
   templateUrl: './todo-item.component.html',
@@ -15,6 +26,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class TodoItemComponent implements OnInit {
   @Input() todos: TaggedTodoItem[];
+  @Input() isEnhanced?: boolean;
 
   @Output() updateEvt = new EventEmitter<UpdateTodoDTO>();
   @Output() removeEvt = new EventEmitter<DeleteTodoDTO>();
@@ -29,7 +41,21 @@ export class TodoItemComponent implements OnInit {
     console.log('TodoItemComponent Init');
   }
 
-  constructor(private readonly nzMessageService: NzMessageService) {}
+  constructor(
+    private readonly nzMessageService: NzMessageService,
+    injector: Injector,
+    public popup: PopUpService
+  ) {
+    // FIXME: custom element error
+    // const PopUpElement = createCustomElement(PopUpComponent, { injector });
+    // customElements.define('popup-element', PopUpElement);
+  }
+
+  invokePopOnEnhancedAppOnly(title: string) {
+    if (this.isEnhanced) {
+      this.popup.showAsComponent(title);
+    }
+  }
 
   todoItemTracker(_idx: number, item: TodoItemBase): number {
     return item.id;

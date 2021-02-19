@@ -28,7 +28,11 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 
 import { SharedModule } from '@todoapp/shared';
-import { UiComponentsModule } from '@todoapp/ui-components';
+import {
+  PopUpService,
+  PopUpComponent,
+  UiComponentsModule,
+} from '@todoapp/ui-components';
 import { AppComponent } from './app.component';
 
 registerLocaleData(zh);
@@ -69,5 +73,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
 
   bootstrap: [AppComponent],
+  entryComponents: [PopUpComponent],
 })
 export class AppModule {}
