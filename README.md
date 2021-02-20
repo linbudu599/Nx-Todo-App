@@ -60,3 +60,11 @@ For more infos, see official document below.
 
 - [ ] Unit/E2E Test in Anuglar/Nest App (Jest + Cypress)
 - [ ] CI/CD
+
+## Error
+
+fix node-gyp error:
+
+```bash
+npm i node-pre-gyp rebuild
+```

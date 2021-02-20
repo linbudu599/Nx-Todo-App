@@ -27,7 +27,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 
 import { SharedModule } from '@todoapp/shared';
-import { UiComponentsModule } from '@todoapp/ui-components';
+import { PopUpComponent, UiComponentsModule } from '@todoapp/ui-components';
 import { AppComponent } from './app.component';
 
 registerLocaleData(zh);

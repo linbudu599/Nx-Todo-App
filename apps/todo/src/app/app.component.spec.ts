@@ -47,7 +47,7 @@ describe('AppComponent', () => {
   });
 
   it(`should have title 'Your Nx Todo-List'`, () => {
-    expect(component.title).toBe('Your Nx Todo-List');
+    expect(component.title).toBe('Nx Todo-List');
   });
 
   it('should render title', () => {
