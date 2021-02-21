@@ -7,6 +7,13 @@ import { AppComponent } from './app.component';
 import { of } from 'rxjs';
 import { AppService } from './app.service';
 import { CreateTodoDTO, TodoItemBase } from '@todoapp/dto';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+
+@Component({ selector: 'todoapp-todo-item', template: '' })
+class TodoItemStubComponent {}
+
+@Component({ selector: 'todoapp-todo-form', template: '' })
+class TodoFormStubComponent {}
 
 class MockAppService {
   todos: TodoItemBase[] = [
@@ -28,18 +35,26 @@ class MockAppService {
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [
+        AppComponent,
+        // use stub comp or ignore unknown elements by NO_ERRORS_SCHEMA
+        TodoItemStubComponent,
+        TodoFormStubComponent,
+      ],
       providers: [
         AppComponent,
         { provide: AppService, useClass: MockAppService },
         { provide: ComponentFixtureAutoDetect, useValue: true },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+    compiled = fixture.nativeElement;
   });
 
   it('should create the app', () => {
@@ -48,16 +63,11 @@ describe('AppComponent', () => {
 
   it(`should have title 'Your Nx Todo-List'`, () => {
     expect(component.title).toBe('Nx Todo-List');
-  });
+    expect(compiled.querySelector('h2').textContent).toBe('Nx Todo-List');
 
-  it('should render title', () => {
     component.title = 'Changed!';
-    // 手动改变侦测不到
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    // expect(compiled.querySelector('h1').textContent).toContain(
-    //   'Welcome to todo!'
-    // );
+    expect(compiled.querySelector('h2').textContent).toBe('Changed!');
   });
 
   it(`should fetch todos`, () => {

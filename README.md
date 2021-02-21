@@ -4,11 +4,12 @@
 
 **This project includes these parts:**
 
-- [simple todo app by Angular](apps/todo/)
-- [enhanced todo app by Angular(**WIP**)](apps/enhanced-todo/)
+- [simple todo app by Angular + NgZorro](apps/todo/)
+- [enhanced todo app by Angular + Apollo + NgRx + NgZorro(**WIP**)](apps/enhanced-todo/)
 - [api server by NestJS](apps/api/)
+- [todo app built by React + Apollo(**WIP**)](apps/react-todo)
 
-For simple Nx usage, just check the simple one.
+For simple Nx usage, just check the [first one](apps/todo/).
 ## Start
 
 ```bash
@@ -25,13 +26,14 @@ nx serve todo
 npx nx run-many --target=build --projects=todo,api
 
 # generate workspace lib(common lib)
+# add --dry-run to check what's going to happen
 nx g @nrwl/workspace:lib <lib-name>
 
 # generate Angular lib
 nx g @nrwl/angular:lib <lib-name>
 
 # generate Angular Component
-# add "--export" enables you to use <todo-app-xxx></<todo-app-xxx> as command executed once
+# add --export enables you to use <todo-app-xxx></<todo-app-xxx> as command executed once
 nx g @nrwl/angular:component <component-name> --project=<project-name> --export
 
 # generate NestJS lib

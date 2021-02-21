@@ -37,4 +37,4 @@ export type RecipeInput = {
   description?: Maybe<Scalars['String']>;
 };
 
-// The file generated on: 2021.02.21 15:02:36 pm-
+// The file generated on: 2021.02.21 17:02:56 pm-
