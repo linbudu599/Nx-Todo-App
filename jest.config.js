@@ -10,5 +10,7 @@ module.exports = {
     '<rootDir>/libs/ui-components',
     '<rootDir>/libs/utils',
     '<rootDir>/apps/enhanced-todo',
+    '<rootDir>/apps/react-todo',
+    '<rootDir>/libs/ui-components-react',
   ],
 };

@@ -1,6 +1,4 @@
 {
-  "npmScope": "todoapp",
-  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": { "dependencies": "*", "devDependencies": "*" },
@@ -9,6 +7,8 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "todoapp",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -28,6 +28,9 @@
     "enhanced-todo-e2e": {
       "tags": [],
       "implicitDependencies": ["enhanced-todo"]
-    }
+    },
+    "react-todo": { "tags": [] },
+    "react-todo-e2e": { "tags": [], "implicitDependencies": ["react-todo"] },
+    "ui-components-react": { "tags": [] }
   }
 }
