@@ -31,6 +31,7 @@
     },
     "react-todo": { "tags": [] },
     "react-todo-e2e": { "tags": [], "implicitDependencies": ["react-todo"] },
-    "ui-components-react": { "tags": [] }
+    "ui-components-react": { "tags": [] },
+    "graphql": { "tags": [] }
   }
 }

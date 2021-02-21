@@ -1,0 +1,19 @@
+overwrite: true
+schema: 'http://localhost:3333/graphql'
+documents: 'libs/graphql/src/operations/**.graphql'
+generates:
+  libs/graphql/src/generated/index.ts:
+    plugins:
+      - 'typescript'
+      # - 'typescript-operations'
+      # - 'typescript-resolvers'
+      # - 'typescript-apollo-angular'
+      # - 'typescript-react-apollo'
+      # - 'fragment-matcher'
+      # - typescript-type-graphql
+      - time:
+          message: 'The file generated on: '
+          format: YYYY.MM.DD HH:MM:SS a-z
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
+import type { Query, Recipe } from '@todoapp/graphql';
+
 const RECIPE_QUERY = gql`
   query {
     recipes {
@@ -11,8 +13,7 @@ const RECIPE_QUERY = gql`
 `;
 
 const Content: React.FC = () => {
-  // TODO: share types by GraphQL-CodeGen
-  const { loading, error, data } = useQuery(RECIPE_QUERY);
+  const { loading, error, data } = useQuery<Query>(RECIPE_QUERY);
 
   return (
     <>
@@ -20,7 +21,14 @@ const Content: React.FC = () => {
       <p>Content</p>
       {loading ? <p>Loading</p> : null}
       {error ? <p>Error!</p> : null}
-      {data ? <p>{JSON.stringify(data)}</p> : null}
+      {data
+        ? data.recipes.map((recipe) => (
+            <div key={recipe.title}>
+              <p>title: {recipe.title}</p>
+              <p>description: {recipe.description}</p>
+            </div>
+          ))
+        : null}
     </>
   );
 };

@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/apps/enhanced-todo',
     '<rootDir>/apps/react-todo',
     '<rootDir>/libs/ui-components-react',
+    '<rootDir>/libs/graphql',
   ],
 };

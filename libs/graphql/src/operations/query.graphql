@@ -1,0 +1,6 @@
+query {
+  recipes {
+    title
+    description
+  }
+}
