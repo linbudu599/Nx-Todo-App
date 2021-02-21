@@ -43,7 +43,7 @@ export class TodoItemComponent implements OnInit {
 
   constructor(
     private readonly nzMessageService: NzMessageService,
-    injector: Injector,
+    // injector: Injector,
     public popup: PopUpService
   ) {
     // FIXME: custom element error

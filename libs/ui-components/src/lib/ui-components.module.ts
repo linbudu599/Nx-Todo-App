@@ -16,6 +16,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
@@ -46,6 +47,7 @@ import { DynamicCompHostComponent } from './dynamic-comp/dynamic-comp.component'
     NzFormModule,
     NzInputModule,
     NzDividerModule,
+    NzEmptyModule,
   ],
   providers: [PopUpService],
   declarations: [

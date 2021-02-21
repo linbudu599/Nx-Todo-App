@@ -32,7 +32,7 @@ class MockAppService {
   }
 }
 
-describe('AppComponent', () => {
+describe.only('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let compiled: HTMLElement;
@@ -59,6 +59,8 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(component).toBeDefined();
+    expect(fixture).toBeDefined();
+    expect(compiled).toBeDefined();
   });
 
   it(`should have title 'Your Nx Todo-List'`, () => {

@@ -1,49 +1,71 @@
-<ng-container *todoappUnless="!todos">
-  <div
-    *ngFor="let todo of todos; index as i; trackBy: todoItemTracker"
-    class="todo-item-container"
-  >
-    <span class="todo-item-tag-span">
-      <nz-tag [nzColor]="todo.tag" class="todo-item-tag">
-        {{ todo.tagText | capitalize }}</nz-tag
-      >
-    </span>
-    <span
-      nz-typography
-      class="todo-item-title"
-      [todoappHighlight]="itemHighlightColor"
-      inputDefaultColor="itemDefaultHighlightColor"
-      (click)="invokePopOnEnhancedAppOnly(todo.title)"
-      ><strong> {{ todo.title | nzEllipsis: 8:'...' }}</strong></span
+<ng-container *ngIf="todos">
+  <ng-container *todoappUnless="!todos.length">
+    <div
+      *ngFor="let todo of todos; index as i; trackBy: todoItemTracker"
+      class="todo-item-container"
     >
-
-    <span nz-typography class="todo-item-description">{{
-      (todo.description ? '' + todo.description : '暂无描述')
-        | nzEllipsis: 16:'...'
-    }}</span>
-
-    <div class="operation" class="todo-item-operation">
-      <button
-        nz-button
-        nzSize="small"
-        (click)="checkDetail(todo.id)"
-        class="todo-item-operation-edit"
+      <span class="todo-item-tag-span">
+        <nz-tag [nzColor]="todo.tag" class="todo-item-tag">
+          {{ todo.tagText | capitalize }}</nz-tag
+        >
+      </span>
+      <span
+        nz-typography
+        class="todo-item-title"
+        [todoappHighlight]="itemHighlightColor"
+        inputDefaultColor="itemDefaultHighlightColor"
+        (click)="invokePopOnEnhancedAppOnly(todo.title)"
+        ><strong> {{ todo.title | nzEllipsis: 8:'...' }}</strong></span
       >
-        <i nz-icon nzType="edit" [nzTheme]="'twotone'"></i>编辑
-      </button>
-      <button
-        nz-button
-        nzSize="small"
-        nz-popconfirm
-        nzPopconfirmTitle="确认删除吗?"
-        nzPopconfirmPlacement="top"
-        (nzOnConfirm)="confirmDelete(todo.id, todo.title)"
-        (nzOnCancel)="cancelDelete()"
-        class="todo-item-operation-remove"
-      >
-        <i nz-icon nzType="close"></i>
-        移除
-      </button>
+
+      <span nz-typography class="todo-item-description">{{
+        (todo.description ? '' + todo.description : '暂无描述')
+          | nzEllipsis: 16:'...'
+      }}</span>
+
+      <div class="operation" class="todo-item-operation">
+        <button
+          nz-button
+          nzSize="small"
+          (click)="checkDetail(todo.id)"
+          class="todo-item-operation-edit"
+        >
+          <i nz-icon nzType="edit" [nzTheme]="'twotone'"></i>编辑
+        </button>
+        <button
+          nz-button
+          nzSize="small"
+          nz-popconfirm
+          nzPopconfirmTitle="确认删除吗?"
+          nzPopconfirmPlacement="top"
+          (nzOnConfirm)="confirmDelete(todo.id, todo.title)"
+          (nzOnCancel)="cancelDelete()"
+          class="todo-item-operation-remove"
+        >
+          <i nz-icon nzType="close"></i>
+          移除
+        </button>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-container *todoappUnless="todos.length"
+    ><nz-empty
+      [nzNotFoundContent]="contentTpl"
+      style="margin-top: 2%"
+    ></nz-empty>
+
+    <ng-template #contentTpl>
+      <h4 nz-typography style="font-size: 22px">
+        <strong
+          >It seems that you don't have any
+          <span style="font-size: 24px; color: steelblue">todos</span> yet
+          ...</strong
+        >
+      </h4>
+      <p style="font-size: 18px" nz-typography>
+        Use button above to create a todo item.
+      </p>
+    </ng-template>
+  </ng-container>
 </ng-container>

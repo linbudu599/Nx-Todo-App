@@ -18,7 +18,7 @@ export class AppService {
   }
 
   createOne(createParams: CreateTodoDTO) {
-    const id = this.db.get('todos').last().value().id + 1;
+    const id = this.db.get('todos').last().value()?.id ?? 0 + 1;
     const create = {
       id,
       title: createParams.title,
