@@ -3,20 +3,30 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateTodoInput {
+  description: String
+  title: String!
+}
+
 type Mutation {
-  addRecipe(input: RecipeInput!): Recipe!
+  createOne(createParams: CreateTodoInput!): Todo!
+  deleteOne(id: Int!): Todo!
+  updateOne(updateParams: UpdateTodoInput!): Todo!
 }
 
 type Query {
-  recipes: [Recipe!]!
+  getTodoById(id: Int!): Todo
+  todos: [Todo!]!
 }
 
-type Recipe {
-  description: String
+type Todo {
+  description: String!
+  id: Int!
   title: String!
 }
 
-input RecipeInput {
+input UpdateTodoInput {
   description: String
-  title: String!
+  id: Int!
+  title: String
 }

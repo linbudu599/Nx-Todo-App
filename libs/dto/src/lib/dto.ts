@@ -21,22 +21,7 @@ export interface TaggedTodoItem extends TodoItemBase {
 
 export type ImmutableTodoItem = Readonly<TodoItemBase>;
 
-// 也可以类型体操安排下 但我懒得搞了
-// XXXTodoPayload是不必要的 可以直接定义校验类
-export type CreateTodoItemPayload = {
-  title: string;
-  description?: string;
-};
-
-export type UpdateTodoItemPayload = {
-  id: number;
-  title?: string;
-  description?: string;
-};
-
-export type DeleteTodoItemPayload = Pick<TodoItemBase, 'id'>;
-
-export class CreateTodoDTO implements CreateTodoItemPayload {
+export class CreateTodoDTO {
   @IsString()
   @Length(2, 20)
   title: string;
@@ -47,7 +32,7 @@ export class CreateTodoDTO implements CreateTodoItemPayload {
   description?: string;
 }
 
-export class UpdateTodoDTO implements UpdateTodoItemPayload {
+export class UpdateTodoDTO {
   @IsInt()
   @Min(0)
   id: number;
@@ -63,7 +48,7 @@ export class UpdateTodoDTO implements UpdateTodoItemPayload {
   description?: string;
 }
 
-export class DeleteTodoDTO implements DeleteTodoItemPayload {
+export class DeleteTodoDTO {
   @IsInt()
   @Min(0)
   id: number;

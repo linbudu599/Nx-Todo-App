@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 
-
-import RecipeModule from '../graphql/modules/recipe.module';
+import TodoModule from '../graphql/modules/todo.module';
 
 @Module({
-  imports: [RecipeModule],
-  providers: [],
+  imports: [TodoModule],
 })
 export default class GraphQLModule {}
