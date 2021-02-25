@@ -17,7 +17,6 @@ export function App() {
       <StyledApp>
         {/* <TodoItem /> */}
         {/* <Content /> */}
-        <Header />
         <Todo />
       </StyledApp>
     </ApolloProvider>

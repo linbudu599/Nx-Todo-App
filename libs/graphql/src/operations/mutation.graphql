@@ -1,0 +1,24 @@
+mutation CreateMutation($createParams: CreateTodoInput!) {
+  createOne(createParams: $createParams) {
+    id
+    title
+    description
+  }
+}
+
+
+mutation UpdateMutation($updateParams: UpdateTodoInput!) {
+  updateOne(updateParams: $updateParams) {
+    id
+    title
+    description
+  }
+}
+
+mutation DeleteMutation($id: Int!) {
+  deleteOne(id: $id) {
+    id
+    title
+    description
+  }
+}

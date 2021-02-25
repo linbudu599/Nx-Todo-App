@@ -1,12 +1,33 @@
 import React from 'react';
 import { Button } from 'antd';
 
-const Header: React.FC = () => {
+import { CreateTodoDTO } from '@todoapp/dto';
+
+interface IHeader {
+  mockCreateTodo: (createParams: CreateTodoDTO) => void;
+  createTodo: () => void;
+}
+
+const Header: React.FC<IHeader> = ({ mockCreateTodo, createTodo }) => {
   return (
     <>
-      <Button type="primary">Mock Add</Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          mockCreateTodo({ title: 'xxx', description: 'xxx' });
+        }}
+      >
+        Mock Add
+      </Button>
       Nx Todo-List (React)
-      <Button type="primary">Real Add</Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          createTodo();
+        }}
+      >
+        Real Add
+      </Button>
     </>
   );
 };

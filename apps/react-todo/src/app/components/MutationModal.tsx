@@ -8,13 +8,18 @@ import { Modal } from 'antd';
 interface IMutationModal {
   visible: boolean;
   todoId: number;
+  useEditMode: boolean;
 }
 
 type FetchOneClientQueryResult = {
   getTodoById: FetchOneQuery['getTodoById'] | null;
 };
 
-const MutationModal: React.FC<IMutationModal> = ({ visible, todoId }) => {
+const MutationModal: React.FC<IMutationModal> = ({
+  visible,
+  todoId,
+  useEditMode,
+}) => {
   const [modalVisible, setModalVisible] = useState<boolean>(visible);
 
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
@@ -30,8 +35,6 @@ const MutationModal: React.FC<IMutationModal> = ({ visible, todoId }) => {
       variables: { id },
     });
 
-    console.log('data: ', data);
-
     setLoadingStatus(loading);
     setErrorStatus(!!error);
     setTodoDetail(data);
@@ -39,20 +42,15 @@ const MutationModal: React.FC<IMutationModal> = ({ visible, todoId }) => {
 
   useEffect(() => {
     setModalVisible(visible);
-    loadDetail(todoId);
+    useEditMode ? loadDetail(todoId) : void 0;
   }, [visible, todoId]);
 
   const handle = () => {
     setModalVisible(false);
   };
 
-  return (
-    <Modal
-      title="Basic Modal"
-      visible={modalVisible}
-      onOk={handle}
-      onCancel={handle}
-    >
+  const ContentAtEditMode = () => (
+    <div>
       {loadingStatus ? (
         <p>Loading ...</p>
       ) : errorStatus ? (
@@ -62,9 +60,24 @@ const MutationModal: React.FC<IMutationModal> = ({ visible, todoId }) => {
           <p>title: {todoDetail?.getTodoById.title}</p>
           <p>description: {todoDetail?.getTodoById.description}</p>
         </div>
-      ) : (
-        <p>EMPTY</p>
-      )}
+      ) : null}
+    </div>
+  );
+
+  const ContentAtCreateMode = () => (
+    <div>
+      <p>Create</p>
+    </div>
+  );
+
+  return (
+    <Modal
+      title={useEditMode ? `Update ${todoId}` : 'Create'}
+      visible={modalVisible}
+      onOk={handle}
+      onCancel={handle}
+    >
+      {useEditMode ? ContentAtEditMode() : ContentAtCreateMode()}
     </Modal>
   );
 };
