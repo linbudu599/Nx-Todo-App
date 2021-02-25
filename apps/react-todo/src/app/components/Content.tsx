@@ -1,25 +1,25 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import type { Query, Recipe } from '@todoapp/graphql';
+// import type { Query, Recipe } from '@todoapp/graphql';
 
-const RECIPE_QUERY = gql`
-  query {
-    recipes {
-      title
-      description
-    }
-  }
-`;
+// const RECIPE_QUERY = gql`
+//   query {
+//     recipes {
+//       title
+//       description
+//     }
+//   }
+// `;
 
 const Content: React.FC = () => {
-  const { loading, error, data } = useQuery<Query>(RECIPE_QUERY);
+  // const { loading, error, data } = useQuery<Query>(RECIPE_QUERY);
 
   return (
     <>
       <h1>Check Apollo Client Status</h1>
       <p>Content</p>
-      {loading ? <p>Loading</p> : null}
+      {/* {loading ? <p>Loading</p> : null}
       {error ? <p>Error!</p> : null}
       {data
         ? data.recipes.map((recipe) => (
@@ -28,7 +28,7 @@ const Content: React.FC = () => {
               <p>description: {recipe.description}</p>
             </div>
           ))
-        : null}
+        : null} */}
     </>
   );
 };

@@ -5,15 +5,18 @@ generates:
   libs/graphql/src/generated/index.ts:
     plugins:
       - 'typescript'
-      # - 'typescript-operations'
-      # - 'typescript-resolvers'
+      - 'typescript-operations'
+      - 'typescript-resolvers'
       # - 'typescript-apollo-angular'
-      # - 'typescript-react-apollo'
+      - 'typescript-react-apollo'
       # - 'fragment-matcher'
       # - typescript-type-graphql
       - time:
           message: 'The file generated on: '
           format: YYYY.MM.DD HH:MM:SS a-z
+      - add:
+          placement: 'prepend'
+          content: '/* eslint-disable @typescript-eslint/ban-types */'
   ./graphql.schema.json:
     plugins:
       - 'introspection'

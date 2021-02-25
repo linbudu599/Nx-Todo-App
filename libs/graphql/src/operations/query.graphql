@@ -1,5 +1,14 @@
-query {
-  recipes {
+query FetchAll {
+  todos {
+    id
+    title
+    description
+  }
+}
+
+query FetchOne($id: Int!) {
+  getTodoById(id: $id) {
+    id
     title
     description
   }
