@@ -64,13 +64,29 @@ const Todo: React.FC = () => {
     setModalVisible(true);
   };
 
-  const handleUpdate = (updateParams: UpdateTodoDTO) => {
-    updateTodo({ variables: { updateParams } });
+  const handleSubmitCreate = async (createParams: CreateTodoDTO) => {
+    console.log('createParams: ', createParams);
+    await createTodo({ variables: { createParams } });
+    await refetch();
+
+    setModalVisible(false);
+  };
+
+  const handleSubmitUpdate = async (updateParams: UpdateTodoDTO) => {
+    console.log('updateParams: ', updateParams);
+    await updateTodo({ variables: { updateParams } });
+    await refetch();
+
+    setModalVisible(false);
   };
 
   const handleDelete = (id: number) => {
     deleteTodo({ variables: { id } });
     refetch();
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
   };
 
   if (loading) {
@@ -109,6 +125,9 @@ const Todo: React.FC = () => {
         visible={modalVisible}
         todoId={selectedTodoId}
         useEditMode={editMode}
+        create={handleSubmitCreate}
+        update={handleSubmitUpdate}
+        close={handleCloseModal}
       />
     </>
   );
