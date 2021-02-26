@@ -5,6 +5,7 @@ import { useApolloClient } from '@apollo/client';
 
 import { Modal, Form, Input, Button } from 'antd';
 import { CreateTodoDTO, UpdateTodoDTO } from '@todoapp/dto';
+import styled from 'styled-components';
 
 const { Item: FormItem, useForm } = Form;
 
@@ -25,6 +26,21 @@ const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16 },
 };
+
+const SubmitButtonContainer = styled(FormItem)`
+  width: 20%;
+  margin: 0 40%;
+  button {
+    border-radius: 5px;
+  }
+`;
+
+const StyledLabelFormItem = styled(FormItem)`
+  letter-spacing: 1px;
+  label {
+    font-size: 16px;
+  }
+`;
 
 const MutationModal: React.FC<IMutationModal> = ({
   visible,
@@ -85,27 +101,27 @@ const MutationModal: React.FC<IMutationModal> = ({
           form={editFormIns}
           onFinish={updateCurrentItem}
         >
-          <FormItem
+          <StyledLabelFormItem
             label="title"
             name="title"
             rules={[{ required: true, message: 'Todo Title Required!' }]}
           >
             <Input />
-          </FormItem>
+          </StyledLabelFormItem>
 
-          <FormItem
+          <StyledLabelFormItem
             label="description"
             name="description"
             rules={[{ required: true, message: 'Todo Description Required!' }]}
           >
             <Input />
-          </FormItem>
+          </StyledLabelFormItem>
 
-          <Form.Item>
+          <SubmitButtonContainer>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-          </Form.Item>
+          </SubmitButtonContainer>
         </Form>
       ) : null}
     </div>
@@ -118,36 +134,36 @@ const MutationModal: React.FC<IMutationModal> = ({
       initialValues={{}}
       onFinish={createCurrentItem}
     >
-      <FormItem
+      <StyledLabelFormItem
         label="title"
         name="title"
         rules={[{ required: true, message: 'Todo Title Required!' }]}
       >
         <Input />
-      </FormItem>
+      </StyledLabelFormItem>
 
-      <FormItem
+      <StyledLabelFormItem
         label="description"
         name="description"
         rules={[{ required: true, message: 'Todo Description Required!' }]}
       >
         <Input />
-      </FormItem>
+      </StyledLabelFormItem>
 
-      <Form.Item>
+      <SubmitButtonContainer>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-      </Form.Item>
+      </SubmitButtonContainer>
     </Form>
   );
 
   return (
     <Modal
-      title={useEditMode ? `Update ${todoId}` : 'Create'}
+      title={useEditMode ? `Update Todo No.${todoId}` : 'Create Todo'}
       visible={visible}
-      onOk={close}
       onCancel={close}
+      footer={null}
     >
       {useEditMode ? ContentAtEditMode() : ContentAtCreateMode()}
     </Modal>
