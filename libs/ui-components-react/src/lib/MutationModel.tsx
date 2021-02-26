@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import styled from 'styled-components';
+import { Modal, Form, Input, Button } from 'antd';
+
 import { FetchOneDocument, FetchOneQuery } from '@todoapp/graphql';
+import { CreateTodoDTO, UpdateTodoDTO } from '@todoapp/dto';
 
 import { useApolloClient } from '@apollo/client';
-
-import { Modal, Form, Input, Button } from 'antd';
-import { CreateTodoDTO, UpdateTodoDTO } from '@todoapp/dto';
-import styled from 'styled-components';
 
 const { Item: FormItem, useForm } = Form;
 

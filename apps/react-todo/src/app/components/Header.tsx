@@ -11,6 +11,14 @@ interface IHeader {
   createTodo: () => void;
 }
 
+const LogoContainer = styled.div`
+  width: 272px;
+  height: 173px;
+  background-color: #143055;
+  padding: 5px;
+  margin: 0 auto;
+`;
+
 const ButtonContainer = styled.div`
   width: 50%;
   height: 6%;
@@ -38,22 +46,13 @@ const ButtonContainer = styled.div`
 
 const Header: React.FC<IHeader> = ({ mockCreateTodo, createTodo }) => {
   return (
-    <div>
-      <div
-        className="logo-container"
-        style={{
-          width: '272px',
-          height: '173px',
-          backgroundColor: '#143055',
-          padding: '5px',
-          margin: '0 auto',
-        }}
-      >
+    <>
+      <LogoContainer>
         <img
           src="https://nx.dev/assets/images/nx-logo-white.svg"
           alt="nx-logo"
         />
-      </div>
+      </LogoContainer>
       <Title className="title" style={{ textAlign: 'center' }}>
         Nx Todo-List (React)
       </Title>
@@ -77,7 +76,7 @@ const Header: React.FC<IHeader> = ({ mockCreateTodo, createTodo }) => {
           Real Add
         </Button>
       </ButtonContainer>
-    </div>
+    </>
   );
 };
 

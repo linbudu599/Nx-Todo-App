@@ -1,2 +1,4 @@
-export * from './lib/todo-item/todo-item';
-export * from './lib/ui-components-react';
+import TodoItem from './lib/TodoItem';
+import MutationModal from './lib/MutationModel';
+
+export { TodoItem, MutationModal };
