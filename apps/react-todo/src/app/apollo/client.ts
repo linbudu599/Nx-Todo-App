@@ -24,7 +24,6 @@ export default function createApolloClient() {
     cache,
     link,
     headers: {
-      // authorization: localStorage.getItem("token") || "",
       'client-name': 'Nx-React-Todo [Client]',
       'client-version': '0.1.0',
     },

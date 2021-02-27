@@ -15,11 +15,13 @@ export class TodoResolver {
 
   @Query(() => [Todo!])
   todos() {
+    console.log('Query todo invoked');
     return this.db.get('todos').value();
   }
 
   @Query(() => Todo, { nullable: true })
   getTodoById(@Arg('id', () => Int) id: number) {
+    console.log('Query getTodoById invoked');
     return this.db.get('todos').find({ id }).value() ?? null;
   }
 
@@ -27,6 +29,7 @@ export class TodoResolver {
   createOne(
     @Arg('createParams', () => CreateTodoInput) createParams: CreateTodoInput
   ) {
+    console.log('Mutation createOne invoked');
     const id = (this.db.get('todos').last().value()?.id ?? 0) + 1;
     const create = {
       id,
@@ -41,6 +44,7 @@ export class TodoResolver {
   updateOne(
     @Arg('updateParams', () => UpdateTodoInput) updateParams: UpdateTodoInput
   ) {
+    console.log('Mutation updateOne invoked');
     let origin = this.db.get('todos').find({ id: updateParams.id });
     const merged = origin.merge(updateParams);
     origin = merged;
@@ -50,6 +54,7 @@ export class TodoResolver {
 
   @Mutation(() => Todo)
   deleteOne(@Arg('id', () => Int) id: number) {
+    console.log('Mutation deleteOne invoked');
     return this.db.get('todos').remove({ id }).write()[0];
   }
 }

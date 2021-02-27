@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Empty } from 'antd';
+import styled from 'styled-components';
 
 import {
   useFetchAllQuery,
@@ -11,7 +12,7 @@ import {
 
 import { CreateTodoDTO, UpdateTodoDTO } from '@todoapp/dto';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, NetworkStatus } from '@apollo/client';
 
 import Header from './Header';
 import { TodoItem, MutationModal } from '@todoapp/ui-components-react';
@@ -26,8 +27,26 @@ import { TodoItem, MutationModal } from '@todoapp/ui-components-react';
  * Just choose as you like :P
  */
 
+const StatusContainer = styled.div`
+  text-align: center;
+  font-size: 18px;
+
+  span:first-child {
+    margin-right: 20px;
+  }
+`;
+
 const Todo: React.FC = () => {
-  const { loading, error, data, refetch } = useFetchAllQuery();
+  const [lastFetchDate, setLastFetchDate] = useState<string>(
+    new Date().toLocaleString()
+  );
+
+  const { loading, error, data, refetch, networkStatus } = useFetchAllQuery({
+    // notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      setLastFetchDate(new Date().toLocaleString());
+    },
+  });
 
   const [selectedTodoId, setSelectedTodoId] = useState<number>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -100,6 +119,15 @@ const Todo: React.FC = () => {
   return (
     <>
       <Header mockCreateTodo={handleMockCreate} createTodo={handleRealCreate} />
+      <StatusContainer>
+        <span>
+          Current Status:{' '}
+          <strong>{NetworkStatus[networkStatus].toLocaleUpperCase()}</strong>
+        </span>
+        <span>
+          Last Fetch Date: <strong>{lastFetchDate}</strong>
+        </span>
+      </StatusContainer>
       {data.todos.length ? (
         data.todos.map((todo) => (
           <TodoItem
