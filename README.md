@@ -4,17 +4,18 @@
 
 **This project includes these parts:**
 
-- [simple todo app by Angular + NgZorro](apps/todo/)
-- [enhanced todo app by Angular + Apollo + NgRx + NgZorro(**WIP**)](apps/enhanced-todo/)
-- [api server by NestJS](apps/api/)
-- [todo app built by React + Apollo(**WIP**)](apps/react-todo)
+- [Simple todo app by **Angular** + **NgZorro**](apps/todo/)
+- [Enhanced todo app by **Angular** + **Apollo** + **NgRx** + **NgZorro** (**WIP**)](apps/enhanced-todo/)
+- [API server by **NestJS**](apps/api/)
+- [Todo app built by **React** + **Apollo-Client**](apps/react-todo)
 
-For simple Nx usage, just check the [first one](apps/todo/).
+For simple Nx usage, just check the [Simple One](apps/todo/).
 ## Start
 
 ```bash
-npm install
-npm install nx -g
+# This project use PNPM as Package Manager
+npm install pnpm nx -g
+pnpm install 
 
 # developing
 
@@ -50,23 +51,17 @@ nx g @nrwl/workspace:remove <resource-to-be-removed>
 nx dep-graph
 ```
 
-## Tech
+## Stack
 
-For more infos, see official document below.
+For more info, see official document below.
 
 - [Nx](https://nx.dev/)
 - [Angular](https://angular.cn/) + [NG-ZORRO](https://ng.ant.design/docs/introduce/zh)
 - [NestJS](https://nestjs.com/) + [LowDB](https://github.com/typicode/lowdb)
+- [React](https://github.com/facebook/react) + [Ant Design](https://ant.design/) + [Apollo-Client](https://github.com/apollographql/apollo-client)
 
 ## Todo
 
 - [ ] Unit/E2E Test in Anuglar/Nest App (Jest + Cypress)
 - [ ] CI/CD
 
-## Error
-
-fix node-gyp error:
-
-```bash
-npm i node-pre-gyp rebuild
-```
