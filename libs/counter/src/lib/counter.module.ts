@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromCounter from './+state/counter/counter.reducer';
-import { CounterEffects } from './+state/counter/counter.effects';
-import { CounterFacade } from './+state/counter/counter.facade';
 
 @NgModule({
   imports: [
@@ -13,8 +11,8 @@ import { CounterFacade } from './+state/counter/counter.facade';
       fromCounter.COUNTER_FEATURE_KEY,
       fromCounter.reducer
     ),
-    EffectsModule.forFeature([CounterEffects]),
+    EffectsModule.forFeature([]),
   ],
-  providers: [CounterFacade],
+  providers: [],
 })
 export class CounterModule {}
