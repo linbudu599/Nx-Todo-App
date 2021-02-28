@@ -23,7 +23,9 @@
       "@todoapp/utils": ["libs/utils/src/index.ts"],
       "@todoapp/shared": ["libs/shared/src/index.ts"],
       "@todoapp/ui-components-react": ["libs/ui-components-react/src/index.ts"],
-      "@todoapp/graphql": ["libs/graphql/src/index.ts"]
+      "@todoapp/graphql": ["libs/graphql/src/index.ts"],
+      "@todoapp/products": ["libs/products/src/index.ts"],
+      "@todoapp/counter": ["libs/counter/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

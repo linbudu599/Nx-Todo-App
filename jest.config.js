@@ -13,5 +13,8 @@ module.exports = {
     '<rootDir>/apps/react-todo',
     '<rootDir>/libs/ui-components-react',
     '<rootDir>/libs/graphql',
+    '<rootDir>/apps/ngrx-practice',
+    '<rootDir>/libs/products',
+    '<rootDir>/libs/counter',
   ],
 };

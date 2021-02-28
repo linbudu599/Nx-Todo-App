@@ -13,6 +13,11 @@ dependencies:
   '@nestjs/core': 7.6.13_1eb5e6299d748bf3a79eb1b79f4236dc
   '@nestjs/graphql': 7.9.10_ac45547bde8057c94b2e6e172e76e160
   '@nestjs/platform-express': 7.6.13_482ecb7fc1344b7ddb92c74eaa880d5f
+  '@ngrx/component-store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+  '@ngrx/effects': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
+  '@ngrx/entity': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
+  '@ngrx/router-store': 11.0.1_61a79ec652115a3ca2a7587e3da3275e
+  '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
   '@nrwl/angular': 11.3.0_cad74d6be0c33cdba1db674cf1432700
   ahooks: 2.9.6_react@17.0.1
   antd: 4.12.3_react-dom@17.0.1+react@17.0.1
@@ -62,6 +67,8 @@ devDependencies:
   '@graphql-codegen/typescript-type-graphql': 1.18.2_graphql@15.5.0
   '@nestjs/schematics': 7.2.7_typescript@4.1.5
   '@nestjs/testing': 7.6.13_916a94de66c10c9d004288a2a21433c9
+  '@ngrx/schematics': 11.0.1_rxjs@6.6.6+zone.js@0.11.4
+  '@ngrx/store-devtools': 11.0.1_@ngrx+store@11.0.1+rxjs@6.6.6
   '@nrwl/cli': 11.3.0
   '@nrwl/cypress': 11.3.0_cypress@6.5.0+typescript@4.1.5
   '@nrwl/devkit': 11.3.0
@@ -501,7 +508,6 @@ packages:
       rxjs: 6.6.6
       tslib: 2.1.0
       zone.js: 0.11.4
-    dev: false
     peerDependencies:
       rxjs: ^6.5.3
       zone.js: ^0.10.2 || ^0.11.3
@@ -3903,6 +3909,98 @@ packages:
     resolution:
       integrity: sha1-oM0gj7VBqpCE61XN0SDR5n7sScE=
       tarball: '@nestjs/testing/download/@nestjs/testing-7.6.13.tgz'
+  /@ngrx/component-store/11.0.1_@angular+core@11.2.3+rxjs@6.6.6:
+    dependencies:
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/core': ^11.0.0
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-FHlwL7/4VNbZVfJUCDkGfd9Rpjc=
+      tarball: '@ngrx/component-store/download/@ngrx/component-store-11.0.1.tgz'
+  /@ngrx/effects/11.0.1_4d5e5cf13c11a7386d440641b1b925a1:
+    dependencies:
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/core': ^11.0.0
+      '@ngrx/store': 11.0.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-VNJy57ykEeqtXeFExnh2vqupm18=
+      tarball: '@ngrx/effects/download/@ngrx/effects-11.0.1.tgz'
+  /@ngrx/entity/11.0.1_4d5e5cf13c11a7386d440641b1b925a1:
+    dependencies:
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/core': ^11.0.0
+      '@ngrx/store': 11.0.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-Qi/h204W7ASD0XHFQNfUeru7xqI=
+      tarball: '@ngrx/entity/download/@ngrx/entity-11.0.1.tgz'
+  /@ngrx/router-store/11.0.1_61a79ec652115a3ca2a7587e3da3275e:
+    dependencies:
+      '@angular/common': 11.2.3_@angular+core@11.2.3+rxjs@6.6.6
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      '@angular/router': 11.2.3_f69a307ac910498f3b545335802b5dc8
+      '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/common': ^11.0.0
+      '@angular/core': ^11.0.0
+      '@angular/router': ^11.0.0
+      '@ngrx/store': 11.0.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-O9RyY+L8KemBHFRm3zTRHA3cmvU=
+      tarball: '@ngrx/router-store/download/@ngrx/router-store-11.0.1.tgz'
+  /@ngrx/schematics/11.0.1_rxjs@6.6.6+zone.js@0.11.4:
+    dependencies:
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+    dev: true
+    peerDependencies:
+      rxjs: '*'
+      zone.js: '*'
+    resolution:
+      integrity: sha1-yI3DsJiHKEhjGRyKd76sQQ19XI4=
+      tarball: '@ngrx/schematics/download/@ngrx/schematics-11.0.1.tgz'
+  /@ngrx/store-devtools/11.0.1_@ngrx+store@11.0.1+rxjs@6.6.6:
+    dependencies:
+      '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: true
+    peerDependencies:
+      '@ngrx/store': 11.0.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-ZLMy9k5zU45/rLnZ1+X2bH/xuDQ=
+      tarball: '@ngrx/store-devtools/download/@ngrx/store-devtools-11.0.1.tgz'
+  /@ngrx/store/11.0.1_@angular+core@11.2.3+rxjs@6.6.6:
+    dependencies:
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/core': ^11.0.0
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-/SKbcEu5hH3dLCmc8m6xkBeqf5o=
+      tarball: '@ngrx/store/download/@ngrx/store-11.0.1.tgz'
   /@ngtools/webpack/11.2.2_f6c23f89a5a70999a9bdb1bda593005e:
     dependencies:
       '@angular-devkit/core': 11.2.2
@@ -21453,6 +21551,13 @@ specifiers:
   '@nestjs/platform-express': ^7.6.12
   '@nestjs/schematics': ^7.2.7
   '@nestjs/testing': ^7.6.12
+  '@ngrx/component-store': ^11.0.0
+  '@ngrx/effects': ^11.0.0
+  '@ngrx/entity': ^11.0.0
+  '@ngrx/router-store': ^11.0.0
+  '@ngrx/schematics': ^11.0.0
+  '@ngrx/store': ^11.0.0
+  '@ngrx/store-devtools': ^11.0.0
   '@nrwl/angular': 11.3.0
   '@nrwl/cli': 11.3.0
   '@nrwl/cypress': 11.3.0

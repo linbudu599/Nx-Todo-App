@@ -32,6 +32,13 @@
     "react-todo": { "tags": [] },
     "react-todo-e2e": { "tags": [], "implicitDependencies": ["react-todo"] },
     "ui-components-react": { "tags": [] },
-    "graphql": { "tags": [] }
+    "graphql": { "tags": [] },
+    "ngrx-practice": { "tags": [] },
+    "ngrx-practice-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ngrx-practice"]
+    },
+    "products": { "tags": [] },
+    "counter": { "tags": [] }
   }
 }
