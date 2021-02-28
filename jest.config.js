@@ -16,5 +16,6 @@ module.exports = {
     '<rootDir>/apps/ngrx-practice',
     '<rootDir>/libs/products',
     '<rootDir>/libs/counter',
+    '<rootDir>/libs/books',
   ],
 };

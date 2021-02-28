@@ -39,6 +39,7 @@
       "implicitDependencies": ["ngrx-practice"]
     },
     "products": { "tags": [] },
-    "counter": { "tags": [] }
+    "counter": { "tags": [] },
+    "books": { "tags": [] }
   }
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -18,15 +20,28 @@ import {
   COUNTER_FEATURE_KEY,
 } from '@todoapp/counter';
 
+import {
+  BOOKS_FEATURE_KEY,
+  booksReducer,
+  COLLECTIONS_FEATURE_KEY,
+  collectionsReducer,
+} from '@todoapp/books';
+
+import { BookListComponent } from './book-list/book-list.component';
+import { BookCollectionComponent } from './book-collection/book-collection.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BookListComponent, BookCollectionComponent],
   imports: [
     BrowserModule,
     CommonModule,
+    HttpClientModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
     StoreModule.forRoot(
       {
         [COUNTER_FEATURE_KEY]: counterReducer,
+        [BOOKS_FEATURE_KEY]: booksReducer,
+        [COLLECTIONS_FEATURE_KEY]: collectionsReducer,
       },
       {
         metaReducers: !environment.production ? [] : [],
