@@ -7,7 +7,6 @@ import * as fromBooks from './+state/books/books.reducer';
 import { BooksEffects } from './+state/books/books.effects';
 
 import * as fromCollections from './+state/collections/collections.reducer';
-import { CollectionsEffects } from './+state/collections/collections.effects';
 
 @NgModule({
   imports: [
@@ -18,7 +17,7 @@ import { CollectionsEffects } from './+state/collections/collections.effects';
       fromCollections.COLLECTIONS_FEATURE_KEY,
       fromCollections.collectionsReducer
     ),
-    EffectsModule.forFeature([CollectionsEffects]),
+    EffectsModule.forFeature([]),
   ],
 })
 export class BooksModule {}

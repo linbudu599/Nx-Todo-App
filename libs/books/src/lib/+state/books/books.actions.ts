@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Book } from './books.models';
 
+export const fetchBook = createAction('[Book List] Fetch Book');
+
 export const addBook = createAction(
   '[Book List] Add Book',
   props<{ bookId: string }>()

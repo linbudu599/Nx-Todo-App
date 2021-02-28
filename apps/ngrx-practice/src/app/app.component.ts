@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,7 @@ import {
   removeBook,
   BOOKS_FEATURE_KEY,
   BookCompState,
+  Book,
 } from '@todoapp/books';
 
 @Component({
@@ -26,7 +27,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'NgRx Practice';
 
   count$: Observable<number>;
@@ -34,7 +35,12 @@ export class AppComponent {
   bookCollection$ = this.store.pipe(select(selectBookCollection));
 
   constructor(
-    private store: Store<any>,
+    private store: Store<{
+      // should import from store
+      counter: number;
+      books: Book[];
+      collections: string[];
+    }>,
     private booksService: GoogleBooksService
   ) {
     this.count$ = store.select('counter');
@@ -46,11 +52,11 @@ export class AppComponent {
       .subscribe((Book) => this.store.dispatch(retrievedBookList({ Book })));
   }
 
-  onAdd(bookId) {
+  onAdd(bookId: string) {
     this.store.dispatch(addBook({ bookId }));
   }
 
-  onRemove(bookId) {
+  onRemove(bookId: string) {
     this.store.dispatch(removeBook({ bookId }));
   }
 

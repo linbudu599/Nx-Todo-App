@@ -1,6 +1,4 @@
-export * from './lib/+state/collections/collections.actions';
 export * from './lib/+state/collections/collections.reducer';
-export * from './lib/+state/collections/collections.models';
 
 export * from './lib/+state/books/books.actions';
 export * from './lib/+state/books/books.reducer';
