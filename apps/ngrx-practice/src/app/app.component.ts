@@ -33,7 +33,6 @@ import { filter, map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title = 'NgRx Practice';
 
-  count$: Observable<number>;
   books$ = this.store.pipe(select(selectBooks));
   computedBook$ = this.store.select(selectComputedBook, { extra: 'EXTRA' });
   bookCollection$ = this.store.pipe(select(selectBookCollection));
@@ -46,9 +45,7 @@ export class AppComponent implements OnInit {
       collections: string[];
     }>,
     private booksService: GoogleBooksService
-  ) {
-    this.count$ = store.select('counter');
-  }
+  ) {}
 
   ngOnInit() {
     // this.booksService
@@ -63,17 +60,5 @@ export class AppComponent implements OnInit {
 
   onRemove(bookId: string) {
     this.store.dispatch(removeBook({ bookId }));
-  }
-
-  increment() {
-    this.store.dispatch(increment());
-  }
-
-  decrement() {
-    this.store.dispatch(decrement());
-  }
-
-  reset() {
-    this.store.dispatch(reset());
   }
 }

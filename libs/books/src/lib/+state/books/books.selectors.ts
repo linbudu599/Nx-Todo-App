@@ -57,32 +57,32 @@ export const selectComputedBookWithFilter = pipe(
   map((books) => from(books).pipe(filter((book) => !!book.id)))
 );
 
-export const selectBookIds = createSelector(
-  selectBooksStateEntity,
-  fromBooks.selectBookIds
-);
+// export const selectBookIds = createSelector(
+//   selectBooksStateEntity,
+//   fromBooks.selectBookIds
+// );
 
-export const selectAllBook = createSelector(
-  selectBooksStateEntity,
-  fromBooks.selectAllBooks
-);
-export const selectUserTotal = createSelector(
-  selectBooksStateEntity,
-  fromBooks.selectTotalBooks
-);
+// export const selectAllBook = createSelector(
+//   selectBooksStateEntity,
+//   fromBooks.selectAllBooks
+// );
+// export const selectUserTotal = createSelector(
+//   selectBooksStateEntity,
+//   fromBooks.selectTotalBooks
+// );
 
-export const selectBookEntities = createSelector(
-  selectBooksStateEntity,
-  fromBooks.selectBookEntities
-);
+// export const selectBookEntities = createSelector(
+//   selectBooksStateEntity,
+//   fromBooks.selectBookEntities
+// );
 
-export const selectCurrentBookId = createSelector(
-  selectBooksStateEntity,
-  fromBooks.getSelectedBookId
-);
+// export const selectCurrentBookId = createSelector(
+//   selectBooksStateEntity,
+//   fromBooks.getSelectedBookId
+// );
 
-export const selectCurrentBook = createSelector(
-  selectBooksStateEntity,
-  selectCurrentBookId,
-  (bookEntities, bookId) => bookEntities[bookId]
-);
+// export const selectCurrentBook = createSelector(
+//   selectBooksStateEntity,
+//   selectCurrentBookId,
+//   (bookEntities, bookId) => bookEntities[bookId]
+// );

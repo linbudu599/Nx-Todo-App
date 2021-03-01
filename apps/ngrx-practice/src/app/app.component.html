@@ -1,14 +1,8 @@
 <h1>{{ title }}</h1>
-<h2>Counter Demo</h2>
-<button (click)="increment()">Increment</button>
 
-<span>Current Count: {{ count$ | async }}</span>
+<todoapp-counter></todoapp-counter>
 
-<button (click)="decrement()">Decrement</button>
-<br />
-<button (click)="reset()">Reset Counter</button>
-
-<h2>Books Demo</h2>
+<!-- <h2>Books Demo</h2>
 <todoapp-book-list
   class="book-list"
   [books]="books$ | async"
@@ -28,4 +22,4 @@
   [books]="bookCollection$ | async"
   (remove)="onRemove($event)"
 >
-</todoapp-book-collection>
+</todoapp-book-collection>  -->

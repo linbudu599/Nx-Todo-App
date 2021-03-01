@@ -1,4 +1,4 @@
-import { NgModule, InjectionToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,18 +9,12 @@ import { RouterModule } from '@angular/router';
 
 import { environment } from '../environments/environment';
 
-import {
-  StoreModule,
-  ActionReducer,
-  MetaReducer,
-  ActionReducerMap,
-} from '@ngrx/store';
+import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import {
-  CounterModule,
   reducer as counterReducer,
   COUNTER_FEATURE_KEY,
 } from '@todoapp/counter';
@@ -35,6 +29,8 @@ import {
 
 import { BookListComponent } from './book-list/book-list.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
+import { CounterComponent } from './counter/counter.component';
+import { CounterModule } from './counter/counter.module';
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
@@ -48,7 +44,12 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
 export const metaReducers: MetaReducer<any>[] = [debug];
 
 @NgModule({
-  declarations: [AppComponent, BookListComponent, BookCollectionComponent],
+  declarations: [
+    AppComponent,
+    BookListComponent,
+    BookCollectionComponent,
+    CounterComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
