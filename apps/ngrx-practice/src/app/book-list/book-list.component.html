@@ -1,4 +1,5 @@
 <div class="book-item" *ngFor="let book of books">
+  <p>{{ book.id }}</p>
   <p>{{ book.volumeInfo.title }}</p>
   <span> by {{ book.volumeInfo.authors }}</span>
   <button (click)="add.emit(book.id)" data-test="add-button">

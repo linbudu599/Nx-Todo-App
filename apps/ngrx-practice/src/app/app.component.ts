@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import {
   increment,
@@ -20,7 +20,10 @@ import {
   BOOKS_FEATURE_KEY,
   BookCompState,
   Book,
+  selectComputedBook,
+  fetchBookEffect,
 } from '@todoapp/books';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'todoapp-root',
@@ -32,6 +35,7 @@ export class AppComponent implements OnInit {
 
   count$: Observable<number>;
   books$ = this.store.pipe(select(selectBooks));
+  computedBook$ = this.store.select(selectComputedBook, { extra: 'EXTRA' });
   bookCollection$ = this.store.pipe(select(selectBookCollection));
 
   constructor(
@@ -47,9 +51,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.booksService
-      .getBooks()
-      .subscribe((Book) => this.store.dispatch(retrievedBookList({ Book })));
+    // this.booksService
+    //   .getBooks()
+    //   .subscribe((books) => this.store.dispatch(retrievedBookList({ books })));
+    this.store.dispatch(fetchBookEffect());
   }
 
   onAdd(bookId: string) {

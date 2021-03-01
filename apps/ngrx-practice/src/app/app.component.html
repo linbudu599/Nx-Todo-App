@@ -15,6 +15,13 @@
   (add)="onAdd($event)"
 ></todoapp-book-list>
 
+<h2>Computed Demo</h2>
+<todoapp-book-list
+  class="book-list"
+  [books]="computedBook$ | async"
+  (add)="onAdd($event)"
+></todoapp-book-list>
+
 <h2>My Collection</h2>
 <todoapp-book-collection
   class="book-collection"
