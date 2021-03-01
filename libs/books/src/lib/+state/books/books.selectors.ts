@@ -9,6 +9,8 @@ import { Book } from './books.models';
 import { from, pipe } from 'rxjs';
 import { every, filter, map } from 'rxjs/operators';
 
+import * as fromBooks from './books.reducer';
+
 export const selectBooks = createSelector(
   (state: BookCompState) => state.books,
   (books: Array<Book>) => books
@@ -17,6 +19,10 @@ export const selectBooks = createSelector(
 // export declare function createFeatureSelector<T, V>(
 //   featureName: keyof T
 // ): MemoizedSelector<T, V>;
+
+export const selectBooksStateEntity = createFeatureSelector<fromBooks.BookEntityState>(
+  'books'
+);
 
 // 从整个store根部选择
 export const selectCollectionState = createFeatureSelector<
@@ -49,4 +55,34 @@ export const selectComputedBook = createSelector(
 export const selectComputedBookWithFilter = pipe(
   select(selectComputedBook),
   map((books) => from(books).pipe(filter((book) => !!book.id)))
+);
+
+export const selectBookIds = createSelector(
+  selectBooksStateEntity,
+  fromBooks.selectBookIds
+);
+
+export const selectAllBook = createSelector(
+  selectBooksStateEntity,
+  fromBooks.selectAllBooks
+);
+export const selectUserTotal = createSelector(
+  selectBooksStateEntity,
+  fromBooks.selectTotalBooks
+);
+
+export const selectBookEntities = createSelector(
+  selectBooksStateEntity,
+  fromBooks.selectBookEntities
+);
+
+export const selectCurrentBookId = createSelector(
+  selectBooksStateEntity,
+  fromBooks.getSelectedBookId
+);
+
+export const selectCurrentBook = createSelector(
+  selectBooksStateEntity,
+  selectCurrentBookId,
+  (bookEntities, bookId) => bookEntities[bookId]
 );
