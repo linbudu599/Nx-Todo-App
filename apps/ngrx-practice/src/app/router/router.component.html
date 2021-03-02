@@ -1,4 +1,4 @@
-<h1>router root</h1>
+<!-- <h1>router root</h1>
 
 <nav>
   <ul>
@@ -10,5 +10,12 @@
     <li><a routerLink="/b" routerLinkActive="active">/b</a></li>
   </ul>
 </nav>
+
+<router-outlet></router-outlet> -->
+<ol *ngIf="cars$ | async as cars">
+  <a *ngFor="let car of cars" [routerLink]="car.id">
+    <li>{{ car.make }} | {{ car.model }} | {{ car.year }}</li></a
+  >
+</ol>
 
 <router-outlet></router-outlet>

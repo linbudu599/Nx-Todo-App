@@ -36,6 +36,7 @@ import { RouterUseModule } from './router/router.module';
 import { RouterComponent } from './router/router.component';
 
 import { AppRoutingModule, routes } from './app-routing.module';
+import { reducer } from './router/car/car.reducer';
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
@@ -60,9 +61,9 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    AppRoutingModule,
     StoreModule.forRoot(
       {
+        cars: reducer,
         [COUNTER_FEATURE_KEY]: counterReducer,
         [BOOKS_FEATURE_KEY]: booksReducer,
         [COLLECTIONS_FEATURE_KEY]: collectionsReducer,
@@ -83,6 +84,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
           logOnly: false,
         })
       : [],
+    AppRoutingModule,
     StoreRouterConnectingModule.forRoot(),
     CounterModule,
     RouterUseModule,
