@@ -5,12 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 
 import { environment } from '../environments/environment';
 
 import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -32,6 +31,12 @@ import { BookCollectionComponent } from './book-collection/book-collection.compo
 import { CounterComponent } from './counter/counter.component';
 import { CounterModule } from './counter/counter.module';
 
+import { RouterUseModule } from './router/router.module';
+
+import { RouterComponent } from './router/router.component';
+
+import { AppRoutingModule, routes } from './app-routing.module';
+
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     console.log('state', state);
@@ -49,20 +54,22 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     BookListComponent,
     BookCollectionComponent,
     CounterComponent,
+    RouterComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    AppRoutingModule,
     StoreModule.forRoot(
       {
         [COUNTER_FEATURE_KEY]: counterReducer,
         [BOOKS_FEATURE_KEY]: booksReducer,
         [COLLECTIONS_FEATURE_KEY]: collectionsReducer,
+        router: routerReducer,
       },
       {
-        metaReducers: !environment.production ? metaReducers : [],
+        metaReducers: !environment.production ? [] : [],
         runtimeChecks: {
           strictActionImmutability: true,
           strictStateImmutability: true,
@@ -78,6 +85,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
       : [],
     StoreRouterConnectingModule.forRoot(),
     CounterModule,
+    RouterUseModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,29 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { from, Observable } from 'rxjs';
-
-import {
-  increment,
-  decrement,
-  reset,
-  COUNTER_FEATURE_KEY,
-} from '@todoapp/counter';
 
 import { GoogleBooksService } from './book-list/book-list.service';
 
 import {
   selectBookCollection,
   selectBooks,
-  retrievedBookList,
   addBook,
   removeBook,
-  BOOKS_FEATURE_KEY,
-  BookCompState,
   Book,
   selectComputedBook,
   fetchBookEffect,
 } from '@todoapp/books';
-import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'todoapp-root',
