@@ -40,6 +40,8 @@
     },
     "products": { "tags": [] },
     "counter": { "tags": [] },
-    "books": { "tags": [] }
+    "books": { "tags": [] },
+    "ngrx-todo": { "tags": [] },
+    "ngrx-todo-e2e": { "tags": [], "implicitDependencies": ["ngrx-todo"] }
   }
 }

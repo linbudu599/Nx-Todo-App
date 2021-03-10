@@ -17,5 +17,6 @@ module.exports = {
     '<rootDir>/libs/products',
     '<rootDir>/libs/counter',
     '<rootDir>/libs/books',
+    '<rootDir>/apps/ngrx-todo',
   ],
 };
