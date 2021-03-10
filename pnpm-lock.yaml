@@ -14,6 +14,7 @@ dependencies:
   '@nestjs/graphql': 7.9.10_ac45547bde8057c94b2e6e172e76e160
   '@nestjs/platform-express': 7.6.13_482ecb7fc1344b7ddb92c74eaa880d5f
   '@ngrx/component-store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+  '@ngrx/data': 11.0.1_bcfd3218a5fc765ecd99c56f24a8cc8e
   '@ngrx/effects': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
   '@ngrx/entity': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
   '@ngrx/router-store': 11.0.1_61a79ec652115a3ca2a7587e3da3275e
@@ -3921,6 +3922,26 @@ packages:
     resolution:
       integrity: sha1-FHlwL7/4VNbZVfJUCDkGfd9Rpjc=
       tarball: '@ngrx/component-store/download/@ngrx/component-store-11.0.1.tgz'
+  /@ngrx/data/11.0.1_bcfd3218a5fc765ecd99c56f24a8cc8e:
+    dependencies:
+      '@angular/common': 11.2.3_@angular+core@11.2.3+rxjs@6.6.6
+      '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
+      '@ngrx/effects': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
+      '@ngrx/entity': 11.0.1_4d5e5cf13c11a7386d440641b1b925a1
+      '@ngrx/store': 11.0.1_@angular+core@11.2.3+rxjs@6.6.6
+      rxjs: 6.6.6
+      tslib: 2.1.0
+    dev: false
+    peerDependencies:
+      '@angular/common': ^11.0.0
+      '@angular/core': ^11.0.0
+      '@ngrx/effects': 11.0.1
+      '@ngrx/entity': 11.0.1
+      '@ngrx/store': 11.0.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha1-SDYPuckCCHTO8YuNDg8sF4IyGJs=
+      tarball: '@ngrx/data/download/@ngrx/data-11.0.1.tgz'
   /@ngrx/effects/11.0.1_4d5e5cf13c11a7386d440641b1b925a1:
     dependencies:
       '@angular/core': 11.2.3_rxjs@6.6.6+zone.js@0.11.4
@@ -21552,6 +21573,7 @@ specifiers:
   '@nestjs/schematics': ^7.2.7
   '@nestjs/testing': ^7.6.12
   '@ngrx/component-store': ^11.0.1
+  '@ngrx/data': ^11.0.1
   '@ngrx/effects': ^11.0.0
   '@ngrx/entity': ^11.0.0
   '@ngrx/router-store': ^11.0.0

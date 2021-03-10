@@ -40,6 +40,11 @@ import { reducer } from './router/car/car.reducer';
 import { ComponentStoreModule } from './component-store/component-store.module';
 import { ComponentStoreComponent } from './component-store/component-store.component';
 import { MoviesStore } from './component-store/movie.store';
+import { DataComponent } from './data/data.component';
+import { DataModule } from './data/data.module';
+
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './data/entity-metadata';
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
@@ -60,6 +65,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     CounterComponent,
     RouterComponent,
     ComponentStoreComponent,
+    DataComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +87,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
         },
       }
     ),
+    EntityDataModule.forRoot(entityConfig),
     EffectsModule.forRoot([BooksEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({
@@ -93,6 +100,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     CounterModule,
     RouterUseModule,
     ComponentStoreModule,
+    DataModule,
   ],
   providers: [MoviesStore],
   bootstrap: [AppComponent],

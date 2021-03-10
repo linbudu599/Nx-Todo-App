@@ -1,0 +1,10 @@
+<p>data works!</p>
+<template *ngIf="loading$"> Loading... </template>
+
+<template *ngIf="!loading$">
+  <container>
+    <div *ngFor="let hero of heroes$; let i = index">
+      <p>{{ hero.id }}</p>
+    </div>
+  </container>
+</template>
