@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { environment } from '../environments/environment';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { TodoModule } from './store/todo.module';
+import { TodoModule } from './store/state/todo.module';
 
-import { TODO_FEATURE_KEY, reducer as todoReducer } from './store/todo.reducer';
+import {
+  TODO_FEATURE_KEY,
+  reducer as todoReducer,
+} from './store/state/todo.reducer';
 
 import { AppComponent } from './app.component';
+import { TodoNgRxStoreComponent } from './store/app.component';
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
@@ -23,10 +23,16 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   };
 }
 
-const metaReducers: MetaReducer<any>[] = [debug];
+const metaReducers: MetaReducer[] = [debug];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    // TodoApp on @ngrx/store
+    TodoNgRxStoreComponent,
+    // TodoApp on @ngrx/entity
+    // TodoApp on @ngrx/data
+  ],
   imports: [
     BrowserModule,
     CommonModule,
