@@ -8,6 +8,10 @@ import {
   TaggedTodoItem,
 } from '@todoapp/dto';
 
+export const fetchTodosEffect = createAction(
+  '[Todo List] Fetch Todo List Effect'
+);
+
 export const fetchTodosSuccess = createAction(
   '[Todo List] Fetch Todo List Success',
   props<{ todos: TodoItemBase[] }>()

@@ -27,9 +27,10 @@ export class TodoNgRxStoreComponent implements OnInit {
   constructor(private store: Store, private readonly appService: AppService) {}
 
   initData() {
-    this.appService.fetchAll().subscribe((todos) => {
-      this.store.dispatch(todoActions.fetchTodosSuccess({ todos }));
-    });
+    // this.appService.fetchAll().subscribe((todos) => {
+    //   this.store.dispatch(todoActions.fetchTodosSuccess({ todos }));
+    // });
+    this.store.dispatch(todoActions.fetchTodosEffect());
   }
 
   ngOnInit(): void {

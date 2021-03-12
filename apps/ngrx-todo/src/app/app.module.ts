@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
@@ -29,6 +30,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 
 import { PopUpComponent, UiComponentsModule } from '@todoapp/ui-components';
+
+import { TodoEffect } from './store/state/todo.effect';
 
 registerLocaleData(zh);
 
@@ -91,6 +94,7 @@ const metaReducers: MetaReducer[] = [debug];
         },
       }
     ),
+    EffectsModule.forRoot([TodoEffect]),
     TodoModule,
     NzButtonModule,
     NzLayoutModule,
