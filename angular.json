@@ -797,7 +797,10 @@
               "apps/ngrx-todo/src/favicon.ico",
               "apps/ngrx-todo/src/assets"
             ],
-            "styles": ["apps/ngrx-todo/src/styles.less"],
+            "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "apps/ngrx-todo/src/styles.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -833,7 +836,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngrx-todo:build"
+            "browserTarget": "ngrx-todo:build",
+            "proxyConfig": "apps/ngrx-todo/proxy.conf.json"
           },
           "configurations": {
             "production": {
