@@ -1,16 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { EMPTY, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as todoActions from './state/todo.action';
-import { TodoModel } from './state/todo.model';
 import { selectTodos, selectValidTodoOnly } from './state/todo.selector';
 import { TodoItemBase } from '@todoapp/dto';
-import {
-  CreateTodoDTO,
-  DeleteTodoDTO,
-  UpdateTodoDTO,
-  TaggedTodoItem,
-} from '@todoapp/dto';
+import { CreateTodoDTO, DeleteTodoDTO, UpdateTodoDTO } from '@todoapp/dto';
 import { TodoFormComponent, SubmitEvt } from '@todoapp/ui-components';
 
 import { AppService } from './app.service';
@@ -44,12 +38,13 @@ export class TodoNgRxStoreComponent implements OnInit {
 
   handleRemove(deleteEvtParams: DeleteTodoDTO): void {
     this.appService.deleteOne(deleteEvtParams).subscribe(() => {
-      this.initData();
+      this.store.dispatch(todoActions.removeTodo({ id: deleteEvtParams.id }));
     });
   }
 
   handleCheckDetail(itemId: number): void {
     this.appService.fetchById(itemId).subscribe((todo) => {
+      this.store.dispatch(todoActions.fetchTodoDetail({ todo }));
       this.formComponent.handleModelOpen(false, todo);
     });
   }
@@ -72,13 +67,17 @@ export class TodoNgRxStoreComponent implements OnInit {
   }
 
   private createItem(createParams: CreateTodoDTO) {
-    this.appService.createOne(createParams).subscribe(() => {
+    this.appService.createOne(createParams).subscribe((created) => {
+      this.store.dispatch(todoActions.createTodo({ created }));
+      // only for Tag attachment, state has already been updated
       this.initData();
     });
   }
 
   private updateItem(updateParams: UpdateTodoDTO) {
-    this.appService.updateOne(updateParams).subscribe(() => {
+    this.appService.updateOne(updateParams).subscribe((updated) => {
+      this.store.dispatch(todoActions.updateTodo({ updated }));
+      // only for Tag attachment, state has already been updated
       this.initData();
     });
   }
