@@ -44,6 +44,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 
 import { TodoModule } from './store/state/todo.module';
 
+// TODO: tell apart
+// import {
+//   TODO_FEATURE_KEY,
+//   reducer as todoReducer,
+// } from './store/state/todo.reducer';
+
 import {
   TODO_FEATURE_KEY,
   reducer as todoReducer,

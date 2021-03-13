@@ -42,9 +42,14 @@ export const initialTodoEntityState: TodoEntityState = todoItemAdapter.getInitia
 export const todoEntityReducer = createReducer(
   initialTodoEntityState,
   on(addTodoEntity, (state, { todo }) => todoItemAdapter.addOne(todo, state)),
-  on(addTodosEntity, (state, { todos }) =>
-    todoItemAdapter.addMany(todos, state)
-  ),
+  on(addTodosEntity, (state, { todos }) => {
+    console.log('========: ', todos);
+    return todoItemAdapter.addMany(todos, {
+      ...state,
+      success: true,
+      loading: false,
+    });
+  }),
   on(updateTodoEntity, (state, { updated }) =>
     todoItemAdapter.updateOne(updated, state)
   ),
