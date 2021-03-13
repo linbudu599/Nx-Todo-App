@@ -19,7 +19,7 @@ export class TodoNgRxStoreComponent implements OnInit {
 
   lenForTest: number;
 
-  title = 'ngrx-todo';
+  title = '@ngrx/store todo';
 
   @ViewChild(TodoFormComponent)
   private formComponent: TodoFormComponent;

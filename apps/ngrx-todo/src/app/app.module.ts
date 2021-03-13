@@ -53,6 +53,7 @@ import { AppComponent } from './app.component';
 import { TodoNgRxStoreComponent } from './store/app.component';
 
 import { SharedModule } from '@todoapp/shared';
+import { TodoNgRxEntityComponent } from './collections/app.component';
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
@@ -71,6 +72,7 @@ const metaReducers: MetaReducer[] = [debug];
     // TodoApp on @ngrx/store
     TodoNgRxStoreComponent,
     // TodoApp on @ngrx/entity
+    TodoNgRxEntityComponent,
     // TodoApp on @ngrx/data
   ],
   imports: [
