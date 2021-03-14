@@ -1,4 +1,10 @@
-import { createReducer, on } from '@ngrx/store';
+import {
+  Action,
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+} from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import {
   addTodoEntity,
@@ -9,7 +15,7 @@ import {
 import { TodoItemBase } from '@todoapp/dto';
 
 export interface TodoEntityState extends EntityState<TodoItemBase> {
-  selectTodoId: number | null;
+  selectedTodoId: number | null;
   success?: boolean;
   loading: boolean;
   reason?: string;
@@ -22,7 +28,7 @@ export const sortByTodoTitle = (
   todoB: TodoItemBase
 ): number => todoA.title.localeCompare(todoB.title);
 
-export const todoItemAdapter: EntityAdapter<TodoItemBase> = createEntityAdapter<TodoItemBase>(
+export const todoAdapter: EntityAdapter<TodoItemBase> = createEntityAdapter<TodoItemBase>(
   {
     selectId: selectTodoId,
     sortComparer: sortByTodoTitle,
@@ -31,9 +37,9 @@ export const todoItemAdapter: EntityAdapter<TodoItemBase> = createEntityAdapter<
 
 export const TODO_FEATURE_KEY = 'todo';
 
-export const initialTodoEntityState: TodoEntityState = todoItemAdapter.getInitialState(
+export const initialTodoEntityState: TodoEntityState = todoAdapter.getInitialState(
   {
-    selectTodoId: null,
+    selectedTodoId: 1,
     success: false,
     loading: true,
   }
@@ -41,19 +47,35 @@ export const initialTodoEntityState: TodoEntityState = todoItemAdapter.getInitia
 
 export const todoEntityReducer = createReducer(
   initialTodoEntityState,
-  on(addTodoEntity, (state, { todo }) => todoItemAdapter.addOne(todo, state)),
+  on(addTodoEntity, (state, { todo }) => todoAdapter.addOne(todo, state)),
   on(addTodosEntity, (state, { todos }) => {
     console.log('========: ', todos);
-    return todoItemAdapter.addMany(todos, {
+    return todoAdapter.addMany(todos, {
       ...state,
       success: true,
       loading: false,
     });
   }),
   on(updateTodoEntity, (state, { updated }) =>
-    todoItemAdapter.updateOne(updated, state)
+    todoAdapter.updateOne(updated, state)
   ),
   on(updateTodosEntity, (state, { updateds }) =>
-    todoItemAdapter.updateMany(updateds, state)
+    todoAdapter.updateMany(updateds, state)
   )
 );
+
+export function reducer(state: TodoEntityState | undefined, action: Action) {
+  return todoEntityReducer(state, action);
+}
+
+export const selectTodoModel = createFeatureSelector(TODO_FEATURE_KEY);
+
+export const getSelectedTodoId = (state: TodoEntityState): number =>
+  state.selectedTodoId;
+
+export const {
+  selectIds: selectTodoIds,
+  selectEntities: selectTodoEntities,
+  selectAll: selectAllTodos,
+  selectTotal: selectTotalTodos,
+} = todoAdapter.getSelectors((state: any) => state[TODO_FEATURE_KEY]);

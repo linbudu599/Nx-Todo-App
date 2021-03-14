@@ -53,7 +53,7 @@ import { TodoModule } from './store/state/todo.module';
 import {
   TODO_FEATURE_KEY,
   reducer as todoReducer,
-} from './store/state/todo.reducer';
+} from './collections/state/todo.reducer';
 
 import { AppComponent } from './app.component';
 import { TodoNgRxStoreComponent } from './store/app.component';

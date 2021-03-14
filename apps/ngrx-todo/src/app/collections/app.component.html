@@ -23,11 +23,13 @@
     </button>
   </div>
 
-  <todoapp-todo-item
+  <h1>{{ selected$ | async }}</h1>
+
+  <!-- <todoapp-todo-item
     [todos]="todos$ | async"
     (removeEvt)="handleRemove($event)"
     (checkDetailEvt)="handleCheckDetail($event)"
   ></todoapp-todo-item>
 
-  <todoapp-todo-form (submitEvt)="handleSubmit($event)"></todoapp-todo-form>
+  <todoapp-todo-form (submitEvt)="handleSubmit($event)"></todoapp-todo-form> -->
 </div>

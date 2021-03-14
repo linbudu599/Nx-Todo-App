@@ -17,16 +17,20 @@ import {
   updateTodoEntity,
   removeTodo,
 } from './state/todo.action';
-import { todoEntityReducer } from './state/todo.reducer';
 import {
+  todoEntityReducer,
   selectTodoModel,
-  selectTodos,
   getSelectedTodoId,
   selectTodoIds,
   selectTodoEntities,
   selectAllTodos,
   selectTotalTodos,
-} from './state/todo.selector';
+  TodoEntityState,
+} from './state/todo.reducer';
+
+interface GlobalState {
+  todo: TodoEntityState;
+}
 
 @Component({
   selector: 'todoapp-ngrx-entity',
@@ -36,7 +40,11 @@ import {
 export class TodoNgRxEntityComponent implements OnInit {
   title = '@ngrx/entity todo';
 
-  todos$: Observable<TodoItemBase[]> = this.store.pipe(select(selectTodos));
+  // todos$ = this.store.select((state: GlobalState) => state.todo.entities);
+
+  selected$ = this.store.select(
+    (state: GlobalState) => state.todo.selectedTodoId
+  );
 
   @ViewChild(TodoFormComponent)
   private formComponent: TodoFormComponent;
@@ -46,6 +54,12 @@ export class TodoNgRxEntityComponent implements OnInit {
   initialize() {
     this.appService.fetchAll().subscribe((todos) => {
       this.store.dispatch(addTodosEntity({ todos }));
+      console.log('===');
+      this.store
+        .select((state: GlobalState) => state.todo)
+        .subscribe((x) => {
+          console.log(x);
+        });
     });
   }
 
