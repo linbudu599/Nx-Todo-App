@@ -1,15 +1,31 @@
 # Nx-Todo-App
 
-## Notice
+## Before Start
 
 **This project includes these parts:**
 
-- [Simple todo app by **Angular** + **NgZorro**](apps/todo/)
-- [Enhanced todo app by **Angular** + **Apollo** + **NgRx** + **NgZorro** (**WIP**)](apps/enhanced-todo/)
-- [API server by **NestJS**](apps/api/)
-- [Todo app built by **React** + **Apollo-Client**](apps/react-todo)
+### Apps
+
+- [Simple Todo App by **Angular** + **NgZorro**](apps/todo/)
+- [Enhanced Todo App by **Angular** + **Apollo** + **NgZorro** (**WIP**)](apps/enhanced-todo/)
+- [API Server by **NestJS**](apps/api/)
+- [Todo App Built by **React** + **Apollo-Client**](apps/react-todo)
+- [Todo App Built by **NgRx** + **Angular** + **NgZorro**](apps/ngrx-todo)
+- [NgRx Practice](apps/ngrx-ngrx-practice)
 
 For simple Nx usage, just check the [Simple One](apps/todo/).
+
+### Libs
+
+- [NgRx State Module: books](libs/books/)
+- [NgRx State Module: counter](libs/counter/)
+- [NgRx State Module: products](libs/products/)
+- [DTO Shared by All Apps](libs/dto/)
+- [Generated GraphQL Code(Apollo-Client Hooks / TypeScript Type Definitions)](libs/graphql/)
+- [Shared: Angular Directives & Pipes](libs/shared/)
+- [Angular UI Components](libs/ui-components/)
+- [React UI Components](libs/ui-components-react/)
+
 ## Start
 
 ```bash
@@ -22,6 +38,11 @@ pnpm install
 # use 2 terminals
 nx serve api
 nx serve todo
+
+# other application
+nx serve enhanced-todo
+nx serve react-todo
+nx serve ngrx-todo
 
 # use one ternimal only
 npx nx run-many --target=build --projects=todo,api
@@ -59,9 +80,7 @@ For more info, see official document below.
 - [Angular](https://angular.cn/) + [NG-ZORRO](https://ng.ant.design/docs/introduce/zh)
 - [NestJS](https://nestjs.com/) + [LowDB](https://github.com/typicode/lowdb)
 - [React](https://github.com/facebook/react) + [Ant Design](https://ant.design/) + [Apollo-Client](https://github.com/apollographql/apollo-client)
+- [NgRx](https://ngrx.io/)
+- [GraphQL-Code-Generator](https://github.com/dotansimha/graphql-code-generator)
 
-## Todo
-
-- [ ] Unit/E2E Test in Anuglar/Nest App (Jest + Cypress)
-- [ ] CI/CD
 
