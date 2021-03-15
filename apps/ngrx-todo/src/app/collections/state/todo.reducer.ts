@@ -48,14 +48,13 @@ export const initialTodoEntityState: TodoEntityState = todoAdapter.getInitialSta
 export const todoEntityReducer = createReducer(
   initialTodoEntityState,
   on(addTodoEntity, (state, { todo }) => todoAdapter.addOne(todo, state)),
-  on(addTodosEntity, (state, { todos }) => {
-    console.log('========: ', todos);
-    return todoAdapter.addMany(todos, {
+  on(addTodosEntity, (state, { todos }) =>
+    todoAdapter.addMany(todos, {
       ...state,
       success: true,
       loading: false,
-    });
-  }),
+    })
+  ),
   on(updateTodoEntity, (state, { updated }) =>
     todoAdapter.updateOne(updated, state)
   ),
@@ -68,7 +67,14 @@ export function reducer(state: TodoEntityState | undefined, action: Action) {
   return todoEntityReducer(state, action);
 }
 
-export const selectTodoModel = createFeatureSelector(TODO_FEATURE_KEY);
+export const selectTodoState = createSelector(
+  (state: any) => state.todo as TodoItemBase[],
+  (todos) => todos
+);
+
+export const selectTodoModel = createFeatureSelector<TodoEntityState>(
+  TODO_FEATURE_KEY
+);
 
 export const getSelectedTodoId = (state: TodoEntityState): number =>
   state.selectedTodoId;
@@ -79,3 +85,8 @@ export const {
   selectAll: selectAllTodos,
   selectTotal: selectTotalTodos,
 } = todoAdapter.getSelectors((state: any) => state[TODO_FEATURE_KEY]);
+
+// 使用任意一种方式来从根状态树开始选择
+// export const selectAllTodos = createSelector(selectTodoModel, selectAll);
+
+// export const selectTodoIds = createSelector(selectTodoModel, selectIds);

@@ -21,10 +21,7 @@ import {
   todoEntityReducer,
   selectTodoModel,
   getSelectedTodoId,
-  selectTodoIds,
-  selectTodoEntities,
   selectAllTodos,
-  selectTotalTodos,
   TodoEntityState,
 } from './state/todo.reducer';
 
@@ -40,7 +37,7 @@ interface GlobalState {
 export class TodoNgRxEntityComponent implements OnInit {
   title = '@ngrx/entity todo';
 
-  // todos$ = this.store.select((state: GlobalState) => state.todo.entities);
+  todos$ = this.store.pipe(select(selectAllTodos));
 
   selected$ = this.store.select(
     (state: GlobalState) => state.todo.selectedTodoId

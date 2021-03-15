@@ -103,7 +103,8 @@ const metaReducers: MetaReducer[] = [debug];
       }
     ),
     EffectsModule.forRoot([TodoEffect]),
-    TodoModule,
+    // F**K
+    // TodoModule,
     NzButtonModule,
     NzLayoutModule,
     NzSpaceModule,
