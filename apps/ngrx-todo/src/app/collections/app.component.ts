@@ -51,12 +51,6 @@ export class TodoNgRxEntityComponent implements OnInit {
   initialize() {
     this.appService.fetchAll().subscribe((todos) => {
       this.store.dispatch(addTodosEntity({ todos }));
-      console.log('===');
-      this.store
-        .select((state: GlobalState) => state.todo)
-        .subscribe((x) => {
-          console.log(x);
-        });
     });
   }
 
@@ -72,7 +66,6 @@ export class TodoNgRxEntityComponent implements OnInit {
 
   handleCheckDetail(itemId: number): void {
     this.appService.fetchById(itemId).subscribe((todo) => {
-      // this.store.dispatch(todoActions.fetchTodoDetail({ todo }));
       this.formComponent.handleModelOpen(false, todo);
     });
   }
@@ -95,18 +88,22 @@ export class TodoNgRxEntityComponent implements OnInit {
   }
 
   private createItem(createParams: CreateTodoDTO) {
-    // this.appService.createOne(createParams).subscribe((created) => {
-    //   this.store.dispatch(addTodoEntity({ todo:created }));
-    //   // only for Tag attachment, state has already been updated
-    //   this.initialize();
-    // });
+    this.appService.createOne(createParams).subscribe((created) => {
+      this.store.dispatch(addTodoEntity({ todo: created }));
+      // @ngrx/entity will not accept props except Entity Type Definition
+      // so tag will not be attached
+      // this.initialize();
+    });
   }
 
   private updateItem(updateParams: UpdateTodoDTO) {
-    // this.appService.updateOne(updateParams).subscribe((updated) => {
-    //   this.store.dispatch(updateTodoEntity({ updated }));
-    //   // only for Tag attachment, state has already been updated
-    //   this.initialize();
-    // });
+    this.appService.updateOne(updateParams).subscribe((updated) => {
+      this.store.dispatch(
+        updateTodoEntity({ updated: { id: updated.id, changes: updated } })
+      );
+      // @ngrx/entity will not accept props except Entity Type Definition
+      // so tag will not be attached
+      // this.initialize();
+    });
   }
 }

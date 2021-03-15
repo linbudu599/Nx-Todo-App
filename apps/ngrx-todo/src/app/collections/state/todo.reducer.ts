@@ -11,6 +11,7 @@ import {
   addTodosEntity,
   updateTodoEntity,
   updateTodosEntity,
+  removeTodo,
 } from './todo.action';
 import { TodoItemBase } from '@todoapp/dto';
 
@@ -60,7 +61,8 @@ export const todoEntityReducer = createReducer(
   ),
   on(updateTodosEntity, (state, { updateds }) =>
     todoAdapter.updateMany(updateds, state)
-  )
+  ),
+  on(removeTodo, (state, { id }) => todoAdapter.removeOne(id, state))
 );
 
 export function reducer(state: TodoEntityState | undefined, action: Action) {
