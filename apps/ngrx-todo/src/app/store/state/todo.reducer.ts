@@ -1,4 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
+import produce from 'immer';
 
 import * as TodoActions from './todo.action';
 
@@ -10,8 +11,6 @@ export const initialState: TodoModel = {
   todos: [],
   loading: true,
 };
-
-// Todo: Immer
 
 const todoReducer = createReducer(
   initialState,
@@ -29,48 +28,34 @@ const todoReducer = createReducer(
     failedReason: reason,
   })),
   on(TodoActions.updateTodo, (state, { updated }) => {
-    const { id } = updated;
-    const todos = [...state.todos];
-
-    const idx = todos.findIndex((item) => item.id === id);
-
-    todos[idx] = updated;
-
-    return {
-      ...state,
-      todos,
-    };
+    return produce(state, (draftState) => {
+      const { id } = updated;
+      draftState.todos.forEach((todo) => {
+        if (todo.id === id) {
+          todo = updated;
+        }
+      });
+    });
   }),
-  on(TodoActions.fetchTodoDetail, (state, { todo }) => {
-    const { id } = todo;
-    const todos = [...state.todos];
-
-    const idx = todos.findIndex((item) => item.id === id);
-
-    todos[idx] = todo;
-
-    return {
-      ...state,
-      todos,
-    };
+  on(TodoActions.fetchTodoDetail, (state, { todo: detailedTodo }) => {
+    return produce(state, (draftState) => {
+      const { id } = detailedTodo;
+      draftState.todos.forEach((todo) => {
+        if (todo.id === id) {
+          todo = detailedTodo;
+        }
+      });
+    });
   }),
   on(TodoActions.createTodo, (state, { created }) => {
-    let todos = state.todos;
-    todos = [...todos, created];
-
-    return {
-      ...state,
-      todos,
-    };
+    return produce(state, (draftState) => {
+      draftState.todos.push(created);
+    });
   }),
   on(TodoActions.removeTodo, (state, { id }) => {
-    let todos = state.todos;
-    todos = state.todos.filter((todo) => todo.id !== id);
-
-    return {
-      ...state,
-      todos,
-    };
+    return produce(state, (draftState) => {
+      draftState.todos = draftState.todos.filter((todo) => todo.id !== id);
+    });
   })
 );
 

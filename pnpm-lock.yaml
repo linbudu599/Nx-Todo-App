@@ -29,6 +29,7 @@ dependencies:
   core-js: 3.9.0
   document-register-element: 1.13.1
   graphql: 15.5.0
+  immer: 8.0.1
   lodash: 4.17.21
   lowdb: 1.0.0
   ng-zorro-antd: 11.1.0_c5cb40af4223fdb8ceeb3045cce67aba
@@ -12130,6 +12131,11 @@ packages:
     resolution:
       integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
       tarball: image-size/download/image-size-0.5.5.tgz
+  /immer/8.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-nHPbaD4rOXXEJPsFcq9YiYd65lY=
+      tarball: immer/download/immer-8.0.1.tgz
   /immutable/3.7.6:
     dev: true
     engines:
@@ -21626,6 +21632,7 @@ specifiers:
   eslint-plugin-react: 7.21.5
   eslint-plugin-react-hooks: 4.2.0
   graphql: ^15.5.0
+  immer: ^8.0.1
   jest: 26.6.3
   jest-preset-angular: 8.3.2
   lodash: ^4.17.21

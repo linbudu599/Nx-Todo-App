@@ -42,18 +42,16 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
   (key) => antDesignIcons[key]
 );
 
-import { TodoModule } from './store/state/todo.module';
-
 // TODO: tell apart
-// import {
-//   TODO_FEATURE_KEY,
-//   reducer as todoReducer,
-// } from './store/state/todo.reducer';
-
 import {
   TODO_FEATURE_KEY,
   reducer as todoReducer,
-} from './collections/state/todo.reducer';
+} from './store/state/todo.reducer';
+
+// import {
+//   TODO_FEATURE_KEY,
+//   reducer as todoReducer,
+// } from './collections/state/todo.reducer';
 
 import { AppComponent } from './app.component';
 import { TodoNgRxStoreComponent } from './store/app.component';
