@@ -2,14 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  ROUTER_NAVIGATION,
+} from '@ngrx/router-store';
 
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './router/app-routing.module';
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
@@ -33,6 +40,22 @@ import { PopUpComponent, UiComponentsModule } from '@todoapp/ui-components';
 
 import { TodoEffect } from './store/state/todo.effect';
 
+import {
+  TODO_FEATURE_KEY as STORE_TODO_FEATURE_KEY,
+  reducer as storeTodoReducer,
+} from './store/state/todo.reducer';
+
+import {
+  TODO_FEATURE_KEY as ENTITY_TODO_FEATURE_KEY,
+  reducer as entityTodoReducer,
+} from './collections/state/todo.reducer';
+
+import { AppComponent } from './app.component';
+import { TodoNgRxStoreComponent } from './store/app.component';
+import { TodoNgRxEntityComponent } from './collections/app.component';
+
+import { SharedModule } from '@todoapp/shared';
+
 registerLocaleData(zh);
 
 const antDesignIcons = AllIcons as {
@@ -42,28 +65,14 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
   (key) => antDesignIcons[key]
 );
 
-// TODO: tell apart
-import {
-  TODO_FEATURE_KEY,
-  reducer as todoReducer,
-} from './store/state/todo.reducer';
-
-// import {
-//   TODO_FEATURE_KEY,
-//   reducer as todoReducer,
-// } from './collections/state/todo.reducer';
-
-import { AppComponent } from './app.component';
-import { TodoNgRxStoreComponent } from './store/app.component';
-
-import { SharedModule } from '@todoapp/shared';
-import { TodoNgRxEntityComponent } from './collections/app.component';
-
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     console.log('state', state);
     console.log('action', action);
 
+    if (action.type === ROUTER_NAVIGATION) {
+      // ...
+    }
     return reducer(state, action);
   };
 }
@@ -82,6 +91,7 @@ const metaReducers: MetaReducer[] = [debug];
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     UiComponentsModule,
@@ -90,7 +100,9 @@ const metaReducers: MetaReducer[] = [debug];
     SharedModule,
     StoreModule.forRoot(
       {
-        [TODO_FEATURE_KEY]: todoReducer,
+        [STORE_TODO_FEATURE_KEY]: storeTodoReducer,
+        [ENTITY_TODO_FEATURE_KEY]: entityTodoReducer,
+        router: routerReducer,
       },
       {
         metaReducers,
@@ -101,8 +113,7 @@ const metaReducers: MetaReducer[] = [debug];
       }
     ),
     EffectsModule.forRoot([TodoEffect]),
-    // F**K
-    // TodoModule,
+    StoreRouterConnectingModule.forRoot(),
     NzButtonModule,
     NzLayoutModule,
     NzSpaceModule,

@@ -5,7 +5,7 @@ import * as TodoActions from './todo.action';
 
 import { TodoModel } from './todo.model';
 
-export const TODO_FEATURE_KEY = 'todo';
+export const TODO_FEATURE_KEY = 'store_todo';
 
 export const initialState: TodoModel = {
   todos: [],

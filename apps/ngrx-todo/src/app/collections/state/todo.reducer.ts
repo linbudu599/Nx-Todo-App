@@ -36,7 +36,7 @@ export const todoAdapter: EntityAdapter<TodoItemBase> = createEntityAdapter<Todo
   }
 );
 
-export const TODO_FEATURE_KEY = 'todo';
+export const TODO_FEATURE_KEY = 'entity_todo';
 
 export const initialTodoEntityState: TodoEntityState = todoAdapter.getInitialState(
   {
