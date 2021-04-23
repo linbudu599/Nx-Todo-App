@@ -18,5 +18,7 @@ module.exports = {
     '<rootDir>/libs/counter',
     '<rootDir>/libs/books',
     '<rootDir>/apps/ngrx-todo',
+    '<rootDir>/apps/apoll-cache-practice',
+    '<rootDir>/apps/apollo-cache',
   ],
 };

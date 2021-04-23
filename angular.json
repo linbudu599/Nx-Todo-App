@@ -895,6 +895,106 @@
           }
         }
       }
+    },
+    "apollo-cache": {
+      "root": "apps/apollo-cache",
+      "sourceRoot": "apps/apollo-cache/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/apollo-cache",
+            "index": "apps/apollo-cache/src/index.html",
+            "main": "apps/apollo-cache/src/main.tsx",
+            "polyfills": "apps/apollo-cache/src/polyfills.ts",
+            "tsConfig": "apps/apollo-cache/tsconfig.app.json",
+            "assets": [
+              "apps/apollo-cache/src/favicon.ico",
+              "apps/apollo-cache/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/apollo-cache/src/environments/environment.ts",
+                  "with": "apps/apollo-cache/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "apollo-cache:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "apollo-cache:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/apollo-cache/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/apollo-cache"],
+          "options": {
+            "jestConfig": "apps/apollo-cache/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "apollo-cache-e2e": {
+      "root": "apps/apollo-cache-e2e",
+      "sourceRoot": "apps/apollo-cache-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/apollo-cache-e2e/cypress.json",
+            "tsConfig": "apps/apollo-cache-e2e/tsconfig.e2e.json",
+            "devServerTarget": "apollo-cache:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "apollo-cache:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/apollo-cache-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   }
 }

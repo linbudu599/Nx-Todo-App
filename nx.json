@@ -1,47 +1,102 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "todoapp",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   },
   "projects": {
-    "todo": { "tags": [] },
-    "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] },
-    "api": { "tags": [] },
-    "dto": { "tags": [] },
-    "validation": { "tags": [] },
-    "ui-components": { "tags": [] },
-    "utils": { "tags": [] },
-    "shared": { "tags": [] },
-    "enhanced-todo": { "tags": [] },
+    "todo": {
+      "tags": []
+    },
+    "todo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["todo"]
+    },
+    "api": {
+      "tags": []
+    },
+    "dto": {
+      "tags": []
+    },
+    "validation": {
+      "tags": []
+    },
+    "ui-components": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    },
+    "enhanced-todo": {
+      "tags": []
+    },
     "enhanced-todo-e2e": {
       "tags": [],
       "implicitDependencies": ["enhanced-todo"]
     },
-    "react-todo": { "tags": [] },
-    "react-todo-e2e": { "tags": [], "implicitDependencies": ["react-todo"] },
-    "ui-components-react": { "tags": [] },
-    "graphql": { "tags": [] },
-    "ngrx-practice": { "tags": [] },
+    "react-todo": {
+      "tags": []
+    },
+    "react-todo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-todo"]
+    },
+    "ui-components-react": {
+      "tags": []
+    },
+    "graphql": {
+      "tags": []
+    },
+    "ngrx-practice": {
+      "tags": []
+    },
     "ngrx-practice-e2e": {
       "tags": [],
       "implicitDependencies": ["ngrx-practice"]
     },
-    "products": { "tags": [] },
-    "counter": { "tags": [] },
-    "books": { "tags": [] },
-    "ngrx-todo": { "tags": [] },
-    "ngrx-todo-e2e": { "tags": [], "implicitDependencies": ["ngrx-todo"] }
+    "products": {
+      "tags": []
+    },
+    "counter": {
+      "tags": []
+    },
+    "books": {
+      "tags": []
+    },
+    "ngrx-todo": {
+      "tags": []
+    },
+    "ngrx-todo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ngrx-todo"]
+    },
+    "apollo-cache": {
+      "tags": []
+    },
+    "apollo-cache-e2e": {
+      "tags": [],
+      "implicitDependencies": ["apollo-cache"]
+    }
   }
 }
